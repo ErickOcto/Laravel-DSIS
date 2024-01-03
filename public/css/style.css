@@ -540,3 +540,29 @@ line-height: normal;
 .carousel-inner img {
     min-height: 56.25%;
 }
+
+.mt-100{
+    margin-top: 100px;
+}
+
+.mb-100{
+    margin-bottom: 100px;
+}
+
+.m-100{
+    margin: 100px;
+}
+
+.ml-100{
+    margin-left: 100px;
+}
+
+.mr-100{
+    margin-right: 100px;
+}
+
+
+.my-100{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}

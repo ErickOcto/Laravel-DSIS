@@ -11,7 +11,7 @@
 
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 100vh;">
+    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 60vh;">
       <div class="carousel-caption d-none d-md-block">
         <h5>Selamat Datang Di Website SMKN 6 Balikapapn</h5>
         <p>Some representative placeholder content for the first slide.</p>
@@ -19,7 +19,7 @@
     </div>
 
     @foreach ($carousel as $item)
-        <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 100vh">
+        <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 60vh">
           <img src="" class="d-block h-100" alt="carousel-photo">
           <div class="carousel-caption d-none d-md-block bg-white" style="border-radius: 24px;">
             @if(strlen($item->judul) > 40)
@@ -52,4 +52,33 @@
   </button>
 </div>
 {{-- End Section 1 --}}
+
+{{-- Section 2 --}}
+<section class="container my-100">
+    <div class="row d-flex align-items-center">
+        <div class="col-7">
+            <div class="title-4 mb-8">
+                Sambutan Kepala Sekolah
+            </div>
+            <div class="title-2 mb-24" style="color: #1e1e1e">
+                MELANGKAH MENUJU PRESTASI
+            </div>
+            <div class="copy mb-24">
+                Mengembangkan bidang keahlian Teknologi Informasi dan Komunikasi, Memberikan kontribusi bagi percepatan pembangunan di Kalimantan Timur, Mengembangkan manajemen pendidikan berbasis sekolah secara pro aktif dan kreatif, dan Memacu perkembangan pendidikan yang lebih kompetitif dan mandiri.
+            </div>
+            <img src="/image/signature.png" class="mb-24" alt="">
+            <div class="title-6">
+                Anda Supanda, S.Pd., M.Pd.
+
+            </div>
+            <div class="copy">
+                Kepala SMK Negeri 7 Samarinda
+            </div>
+        </div>
+        <div class="col-5">
+            <img src="/image/kepsek.png" alt="" class="img-fluid">
+        </div>
+    </div>
+</section>
+{{-- End Section 2 --}}
 @endsection

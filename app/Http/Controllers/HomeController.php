@@ -19,6 +19,7 @@ class HomeController extends Controller
 
     public function detailBlog(Blog $blog){
         //dd($blog);
-        return view('landing.blog.detail', compact('blog'));
+        $latests = Blog::latest()->take(4)->where('id', '!=', $blog->id)->get();
+        return view('landing.blog.detail', compact('blog', 'latests'));
     }
 }
