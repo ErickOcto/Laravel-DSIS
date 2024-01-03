@@ -12,6 +12,7 @@ body{
     --black: #1E1E1E;
     --blue-2: #4E8AFF;
     --blue-3:#165690;
+    --red: #
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-bold: 700;
@@ -49,6 +50,15 @@ line-height: 28px; /* 175% */
 }
 
 .btn-primary{
+    background: var(--blue-3);
+    font-weight: var(--fw-medium);
+    font-size: 14px;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+}
+
+.btn-danger{
     background: var(--blue-3);
     font-weight: var(--fw-medium);
     font-size: 14px;

@@ -1,11 +1,12 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary pt-24 pb-24">
   <div class="container">
-    <img src="/image/logo-smk1sby.png" alt="" class="navbar-brand" style="max-width: 200px">
+    {{-- <img src="/image/esemka6.png" alt="" class="navbar-brand" style="max-width: 100px"> --}}
+    <div class="navbar-brand">SMKN 6 BALIKPAPAN</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+      <ul class="navbar-nav mb-2 mb-lg-0 ms-auto d-lg-flex align-items-center">
         <li class="nav-item mx-2">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
@@ -78,9 +79,16 @@
           </ul>
         </li>
 
+        @if(Auth::check())
+        <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-secondary ms-2">Logout Dari Akun</button>
+        </form>
+        @else
         <li class="nav-item mx-2">
-          <a class="nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
+          <a class="btn btn-primary ms-2" aria-current="page" href="{{ route('login') }}">Login Ke Akun</a>
         </li>
+        @endif
       </ul>
     </div>
   </div>
