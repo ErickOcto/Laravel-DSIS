@@ -29,7 +29,19 @@ Route::get('/dashboard', function () {
 
 // Backend routes for admin
 Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')->group(function () {
+
+    // Dashboard routes
     Route::get('dashboard', [HomeController::class, 'dashboardAdmin'])->name('dashboard');
+
+    //Admin Category Management Routes
+    Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
+    Route::delete('category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
+
+    //Admin Blog Management Routes
+    Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
+
+    Route::delete('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'delete']);
+
 });
 
 Route::middleware('auth')->group(function () {

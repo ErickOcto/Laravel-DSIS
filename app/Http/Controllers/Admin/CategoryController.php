@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -12,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Category::all();
+        return view('admin.kategori.index', compact('kategoris'));
     }
 
     /**
@@ -20,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
@@ -28,7 +33,29 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $slug = $request->nama;
+        $validators = Validator::make($request->all(), [
+            'nama' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        if($validators->failed()){
+            return redirect()->back();
+        }
+
+        Category::create([
+            'nama' => $request->nama,
+            'slug' => Str::slug($slug) . Str::random(5),
+            'deskripsi' => $request->deskripsi,
+            'user_id' => Auth::user()->id,
+            'lihat' => 0
+        ]);
+
+        return redirect()->route('admin.category.index')->with([
+            'type' => 'success',
+            'message' => 'Sukses menambahkan kategori'
+        ]);
     }
 
     /**
@@ -44,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Category::find($id);
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -52,14 +80,33 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $kategori = Category::find($id);
+        $validators = Validator::make($request->all(), [
+            'nama' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        $kategori->update([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.category.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        Category::find($id)->delete();
+
+        return redirect()->back();
     }
 }
+
