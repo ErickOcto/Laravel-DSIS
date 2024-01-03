@@ -45,8 +45,8 @@
             <div class="sidebar-wrapper active">
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="logo">
-                <a href="index.html"><img src="/assets/compiled/png/logo-wiraba.png" alt="Logo" srcset=""></a>
+            <div class="logo me-1">
+                <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center"><img src="/image/esemka6.png" alt="Logo" srcset="" class="me-1" style="min-height: 48px">SMK6</a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -104,7 +104,7 @@
             <footer>
     <div class="footer clearfix mb-0 text-muted">
         <div class="float-start">
-            <p>Copyright @wiraba 2023 </p>
+            <p>Copyright @frederick 2023 </p>
         </div>
         <div class="float-end">
 
