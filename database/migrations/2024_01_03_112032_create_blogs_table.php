@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('photo');
             $table->string('slug');
+            $table->boolean('carousel')->default(0);
             $table->text('konten');
             $table->foreignId('user_id');
             $table->foreignId('category_id');
