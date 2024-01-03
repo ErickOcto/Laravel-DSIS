@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/profile/visi-misi', function () {
+    return view('profile-sekolah.visi');
+})->name('profile.visi');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

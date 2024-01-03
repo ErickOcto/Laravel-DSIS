@@ -8,14 +8,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto d-lg-flex align-items-center">
         <li class="nav-item mx-2">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
         <li class="nav-item mx-2 dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link {{ request()->is('profile/visi-misi') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Profil
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
+            <li><a class="dropdown-item {{ request()->is('profile/visi-misi') ? 'active' : '' }}" href="{{ route('profile.visi') }}">Visi & Misi</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Struktur & Organisasi</a></li>
             <li><hr class="dropdown-divider"></li>
