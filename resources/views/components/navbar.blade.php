@@ -82,7 +82,18 @@
         @if(Auth::check())
         <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="btn btn-secondary ms-2">Logout Dari Akun</button>
+        <li class="nav-item mx-2 dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Halo, {{ Auth::user()->name }}
+          </a>
+          <div class="photo" style="max-width: 48px">
+
+          </div>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/dashboard">Dashboard Ku</a></li>
+            <button type="submit" class="dropdown-item">Logout Dari Akun</button>
+          </ul>
+        </li>
         </form>
         @else
         <li class="nav-item mx-2">

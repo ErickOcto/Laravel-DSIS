@@ -33,7 +33,7 @@
 <section class="container" style="display:flex; align-items:center; justify-content:center; height:100vh;">
     <div class="">
         <div class="navbar-brand text-center mb-48">
-            SMKN6 BPN
+            SMKN 6 Balikpapan
         </div>
         <form action="{{ route('login') }}" class="card" method="POST" style="min-width: 418px">
             @csrf
