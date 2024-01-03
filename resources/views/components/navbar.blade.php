@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary pt-24 pb-24">
+<nav class="navbar navbar-expand-lg bg-body-tertiary pt-24 pb-24 fixed-top">
   <div class="container">
     {{-- <img src="/image/esemka6.png" alt="" class="navbar-brand" style="max-width: 100px"> --}}
     <div class="navbar-brand">SMKN 6 BALIKPAPAN</div>
@@ -90,7 +90,11 @@
 
           </div>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/dashboard">Dashboard Ku</a></li>
+            @if(!Auth::user()->is_admin)
+            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard Ku</a></li>
+            @else
+            <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard Ku</a></li>
+            @endif
             <button type="submit" class="dropdown-item">Logout Dari Akun</button>
           </ul>
         </li>

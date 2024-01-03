@@ -16,4 +16,9 @@ class HomeController extends Controller
     public function dashboardAdmin(){
         return view('admin.dashboard');
     }
+
+    public function detailBlog(Blog $blog){
+        //dd($blog);
+        return view('landing.blog.detail', compact('blog'));
+    }
 }

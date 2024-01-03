@@ -23,7 +23,7 @@
                             <th>Tanggal Ditambahkan</th>
                             <th>Kreator</th>
                             <th>Jumlah Views</th>
-                            <th>Aksi</th>
+                            <th class="min-w-100">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +42,21 @@
                             <td>
                                 <a href="{{ route('admin.blog.edit', $blog->id) }}" class="btn btn-warning">Edit</a>
                                 <a onclick="confirmDelete({{ $blog->id }})" class="btn btn-danger">Hapus</a>
+                                @if($blog->carousel === 0)
+                                    <form action="/admin/blog/update/carousel/{{ $blog->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="carousel" value="1">
+                                        <button class="btn btn-info" type="submit">Tampilkan</button>
+                                    </form>
+                                @else
+                                    <form action="/admin/blog/update/carousel/{{ $blog->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="carousel" value="0">
+                                        <button class="btn btn-light" type="submit">Sembunyikan</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

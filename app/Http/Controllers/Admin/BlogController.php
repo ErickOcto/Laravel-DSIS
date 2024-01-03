@@ -134,7 +134,7 @@ class BlogController extends Controller
             'judul' => $request->judul,
             'konten' => $request->konten,
             'slug' => $slug,
-            'category_id' => $request->category_id,
+            'category_id' => $request->kategori_id,
         ]);
         }
 
@@ -155,5 +155,14 @@ class BlogController extends Controller
             'type' => 'success',
             'message' => "Sukses Menghapus Blog"
         ]);
+    }
+
+    public function updateStatus(Request $request, $id){
+        $blog = Blog::findOrFail($id);
+        $blog->update([
+            'carousel' => $request->carousel,
+        ]);
+
+        return redirect(route('admin.blog.index'));
     }
 }

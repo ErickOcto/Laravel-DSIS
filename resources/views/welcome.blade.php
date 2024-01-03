@@ -11,29 +11,32 @@
 
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/image/esemka6.png" class="d-block h-100" alt="...">
+    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 100vh;">
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
+        <h5>Selamat Datang Di Website SMKN 6 Balikapapn</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
 
     @foreach ($carousel as $item)
-        <div class="carousel-item">
-          <img src="{{ asset('/storage/blogs/'.$item->photo) }}" class="d-block w-100" alt="carousel-photo">
-          <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 100vh">
+          <img src="" class="d-block h-100" alt="carousel-photo">
+          <div class="carousel-caption d-none d-md-block bg-white" style="border-radius: 24px;">
             @if(strlen($item->judul) > 40)
-            <h3>{{ Str::substr($item->judul, 0, 40)}}...</h3>
+            <h3 class="text-black font-bold">{{ Str::substr($item->judul, 0, 40)}}...</h3>
             @else
-            <h3>{{ $item->judul }}</h3>
+            <h3 class="text-black font-bold">{{ $item->judul }}</h3>
             @endif
 
-            @if(strlen($item->konten > 150))
-            <p>{{ Str::substr($item->konten, 0, 150) }}...</p>
+            @if(strlen($item->konten > 250))
+            <p class="text-black">{{ Str::limit(strip_tags($item->konten), 250) }}...</p>
             @else
-            <p>{{ Str::strip_tags($item->konten) }}</p>
+            <p class="text-black">{{ strip_tags($item->konten) }}</p>
             @endif
+
+            <a href="{{ route('detail-blog', $item->slug) }}" class="btn btn-primary mt-8">
+            Baca Selengkapnya
+          </a>
           </div>
         </div>
     @endforeach

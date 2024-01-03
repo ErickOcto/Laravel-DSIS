@@ -536,3 +536,7 @@ line-height: normal;
 .card-brand:hover{
     cursor: pointer;
 }
+
+.carousel-inner img {
+    min-height: 56.25%;
+}
