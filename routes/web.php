@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/dashboard', function () {
 
 // Backend routes for admin
 Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')->group(function () {
-    Route::get('dashboard',)->name('dashboard');
+    Route::get('dashboard', [HomeController::class, 'dashboardAdmin'])->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
