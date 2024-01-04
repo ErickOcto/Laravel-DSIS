@@ -34,19 +34,9 @@
             Jurusan
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Akuntansi dan Keuangan Lembaga</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Bisnis daring dan Pemasaran</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Rekayasa Perangkat Lunak</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Multimedia</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Teknik Komputer dan Jaringan</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Desain Komunikasi Visual</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Perhotelan</a></li>
+            @foreach ($majors as $major)
+            <li><a class="dropdown-item {{ request()->is('majors/' . $major->url) ? 'active' : '' }}" href="{{ route('major', $major->url) }}">{{ $major->name }}</a></li>
+            @endforeach
           </ul>
         </li>
 

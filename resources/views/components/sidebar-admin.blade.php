@@ -38,5 +38,15 @@
                 </a>
             </li>
 
+            <li class="sidebar-title">Manajemen Jurusan</li>
+
+            <li
+                class="sidebar-item {{ request()->is('admin/majors*') ? 'active' : '' }}">
+                <a href="{{ route('admin.majors.index') }}" class='sidebar-link'>
+                    <i class="bi bi-people-fill"></i>
+                    <span>Daftar Jurusan</span>
+                </a>
+            </li>
+
         </ul>
     </div>

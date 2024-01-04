@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->name('detail-blog');
 Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/majors/{major:url}', [HomeController::class, 'majors'])->name('major');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
@@ -47,6 +49,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
     Route::resource('blog', BlogController::class);
     Route::put('blog/update/carousel/{id}', [BlogController::class, 'updateStatus'])->name('blog-update-carousel');
     Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
+
+    //Admin Majors Management Routes
+    Route::resource('majors', MajorController::class);
+    Route::put('update-majors-status', [MajorController::class, 'updateStatus'])->name('majors.status');
 
     // Admin Student Management Routes
     Route::resource('user', StudentController::class);
