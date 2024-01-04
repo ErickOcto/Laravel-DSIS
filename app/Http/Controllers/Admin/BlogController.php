@@ -23,7 +23,7 @@ class BlogController extends Controller
         $jumlahBlog = count($blogs);
         $jumlahView = Blog::sum('lihat');
 
-        //dd($jumlahView);
+        
         return view('admin.blog.index', compact('blogs', 'jumlahBlog', 'jumlahView'));
     }
 

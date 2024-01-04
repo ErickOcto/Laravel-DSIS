@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Major;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,5 +37,9 @@ class HomeController extends Controller
         $blogs = Blog::orderBy('lihat', 'Desc')->take(4)->get();
         $latests = Blog::latest()->take(4)->get();
         return view('landing.blog.index', compact('blogs', 'latests'));
+    }
+
+    public function majors(Major $major){
+        return view('landing.major.detail', compact('major'));
     }
 }
