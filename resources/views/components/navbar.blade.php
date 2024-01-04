@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item mx-2">
-          <a class="nav-link" aria-current="page" href="#">Berita</a>
+          <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" aria-current="page" href="{{ route('blog') }}">Berita</a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link" aria-current="page" href="#">Modul</a>
