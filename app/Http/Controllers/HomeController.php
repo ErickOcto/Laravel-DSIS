@@ -28,6 +28,8 @@ class HomeController extends Controller
         $blog->update([
             'lihat' => $blog->lihat + 1
         ]);
+
+        return redirect()->route('detail-blog', $blog->slug);
     }
 
     public function blog(){

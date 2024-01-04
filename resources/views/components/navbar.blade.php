@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary pt-24 pb-24 fixed-top">
   <div class="container">
     {{-- <img src="/image/esemka6.png" alt="" class="navbar-brand" style="max-width: 100px"> --}}
-    <div class="navbar-brand d-none d-md-block">SMKN 6 BALIKPAPAN</div>
+    <a href="{{ route('home') }}" class="navbar-brand d-none d-md-block">SMKN 6 BALIKPAPAN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

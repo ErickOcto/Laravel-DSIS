@@ -33,7 +33,10 @@ Blog Dan Berita
                 data-aos-delay="{{ $key++ }}00"
                 data-aos-duration="1000"
             >
-                <a href="{{ route('detail-blog', $blog->slug) }}" style="text-decoration: none">
+
+                <form action="{{ route('update-lihat', $blog->id) }}" method="POST" class="update-form" style="text-decoration: none">
+                    @csrf
+                    @method('PUT')
                 <div class="card blog">
                     <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
                     <div class="card-body">
@@ -48,12 +51,13 @@ Blog Dan Berita
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="{{ route('detail-blog', $blog->slug) }}" style="" class="footer-card">
+                    <button type="submit" style="border:0px;" class="footer-card">
                         <div class="title-6 text-center pt-16 pb-16">
                             Baca Selengkapnya
                         </div>
-                    </a>
+                    </button>
                 </div>
+                </form>
                 </a>
             </div>
         @endforeach($i = 0; $i < 4; $i++)
@@ -84,7 +88,9 @@ Blog Dan Berita
                 data-aos-delay="{{ $key++ }}00"
                 data-aos-duration="1000"
             >
-                <a href="{{ route('detail-blog', $blog->slug) }}" style="text-decoration: none">
+                <form action="{{ route('update-lihat', $blog->id) }}" method="POST" class="update-form" style="text-decoration: none">
+                    @csrf
+                    @method('PUT')
                 <div class="card blog">
                     <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
                     <div class="card-body">
@@ -99,13 +105,13 @@ Blog Dan Berita
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="{{ route('detail-blog', $blog->slug) }}" style="" class="footer-card">
+                    <button type="submit" style="border:0px;" class="footer-card">
                         <div class="title-6 text-center pt-16 pb-16">
                             Baca Selengkapnya
                         </div>
-                    </a>
+                    </button>
                 </div>
-                </a>
+                </form>
             </div>
         @endforeach($i = 0; $i < 4; $i++)
     </div>

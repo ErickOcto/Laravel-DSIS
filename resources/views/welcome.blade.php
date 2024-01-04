@@ -236,7 +236,9 @@
                 data-aos-delay="{{ $key++ }}00"
                 data-aos-duration="1000"
             >
-                <a href="{{ route('detail-blog', $blog->slug) }}" style="text-decoration: none">
+                <form action="{{ route('update-lihat', $blog->id) }}" method="POST" class="update-form" style="text-decoration: none">
+                    @csrf
+                    @method('PUT')
                 <div class="card blog">
                     <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
                     <div class="card-body">
@@ -251,13 +253,13 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="{{ route('detail-blog', $blog->slug) }}" style="" class="footer-card">
+                    <button type="submit" style="border:0px;" class="footer-card">
                         <div class="title-6 text-center pt-16 pb-16">
                             Baca Selengkapnya
                         </div>
-                    </a>
+                    </button>
                 </div>
-                </a>
+                </form>
             </div>
         @endforeach($i = 0; $i < 4; $i++)
     </div>
@@ -265,3 +267,26 @@
 </section>
 {{-- End Blog Lainnya --}}
 @endsection
+
+{{-- @push('add-script')
+<script>
+    $('.update-form').submit(function (e) {
+        e.preventDefault();
+
+        var form = $(this);
+
+        $.ajax({
+            url: form.attr('action'),
+            method: 'PUT', // Change this to 'PUT'
+            data: form.serialize(),
+            success: function (response) {
+                // Update berhasil, arahkan ke halaman detail-blog berdasarkan ID
+                window.location.href = "{{ route('detail-blog', 'ID') }}".replace('ID', response.id);
+            },
+            error: function (error) {
+                console.log('Update gagal:', error);
+            }
+        });
+    });
+</script>
+@endpush --}}
