@@ -194,4 +194,75 @@
     </div>
 </section>
 {{-- End Section 2 --}}
+
+{{-- Section 3 --}}
+<section class="container-fluid py-5" style="background: #eeeeee">
+    <div class="container d-flex align-items-center justify-content-center" style="background: url('/assets/image/gabung.png'); background-size: cover; min-height:200px">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="kiri mr-48">
+                <div class="title-3-pth mb-8">
+                    Gabung bersama kami do SMK Negeri 6 Balikpapan
+                </div>
+                <div class="subtitle">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, hic.
+                </div>
+            </div>
+            <div class="kanan ml-48">
+                <a href="{{ url('https://cabdinbalikpapan.siap-ppdb.com/') }}" target="_blank" class="btn btn-secondary">DAFTAR</a>
+            </div>
+        </div>
+    </div>
+</section>
+{{-- End Section 3 --}}
+
+{{-- Blog Lainnya --}}
+<section class="container my-100">
+    <div class="d-flex justify-content-between align-items-center mb-24" id="fitur-kita">
+        <div class="kiri">
+            <div class="title-3 mb-8">
+                Blog Lainnya
+            </div>
+            <div class="subtitle-2">
+                Blog paling baru diupload
+            </div>
+        </div>
+        <div class="kanan">
+            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+        </div>
+    </div>
+    <div class="row">
+        @foreach ($latests as $key => $blog)
+            <div class="col-12 col-md-6 col-lg-3"
+                data-aos="zoom-in-up"
+                data-aos-delay="{{ $key++ }}00"
+                data-aos-duration="1000"
+            >
+                <a href="{{ route('detail-blog', $blog->slug) }}" style="text-decoration: none">
+                <div class="card blog">
+                    <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
+                    <div class="card-body">
+                        <div class="title-5 mb-8">
+                            {{ Str::limit($blog->judul, 25) }}
+                        </div>
+                        <div class="copy mb-8">
+                            Tanggal : {{ $blog->created_at }}
+                        </div>
+                        <div class="copy">
+                            Oleh : {{ $blog->User->name }}
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <a href="{{ route('detail-blog', $blog->slug) }}" style="" class="footer-card">
+                        <div class="title-6 text-center pt-16 pb-16">
+                            Baca Selengkapnya
+                        </div>
+                    </a>
+                </div>
+                </a>
+            </div>
+        @endforeach($i = 0; $i < 4; $i++)
+    </div>
+    {{-- {{ $latests->links() }} --}}
+</section>
+{{-- End Blog Lainnya --}}
 @endsection

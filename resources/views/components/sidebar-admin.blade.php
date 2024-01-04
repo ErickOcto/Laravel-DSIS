@@ -31,8 +31,8 @@
             <li class="sidebar-title">Manajemen Pengguna</li>
 
             <li
-                class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                class="sidebar-item {{ request()->is('admin/user*') ? 'active' : '' }}">
+                <a href="{{ route('admin.user.index') }}" class='sidebar-link'>
                     <i class="bi bi-people-fill"></i>
                     <span>Daftar Pengguna</span>
                 </a>

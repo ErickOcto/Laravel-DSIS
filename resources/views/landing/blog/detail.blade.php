@@ -25,7 +25,7 @@ Blog - {{ $blog->judul }}
     <div class="d-flex justify-content-start align-items-center mb-24" id="fitur-kita">
         <div class="kiri">
             <div class="title-3 mb-8">
-                Blog Lainnya
+                Blog Terbaru
             </div>
             <div class="subtitle-2">
                 Blog paling baru diupload

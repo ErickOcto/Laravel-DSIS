@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -45,6 +46,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
     Route::resource('blog', BlogController::class);
     Route::put('blog/update/carousel/{id}', [BlogController::class, 'updateStatus'])->name('blog-update-carousel');
     Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
+
+    // Admin Student Management Routes
+    Route::resource('user', StudentController::class);
 
 });
 
