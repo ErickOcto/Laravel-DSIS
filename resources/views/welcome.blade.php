@@ -199,16 +199,15 @@
 <section class="container-fluid py-5" style="background: #eeeeee">
     <div class="container d-flex align-items-center justify-content-center" style="background: url('/assets/image/gabung.png'); background-size: cover; min-height:200px">
         <div class="d-flex align-items-center justify-content-between">
-            <div class="kiri mr-48">
-                <div class="title-3-pth mb-8">
-                    Gabung bersama kami do SMK Negeri 6 Balikpapan
+            <div class="bungkus mt-48 mb-48">
+                <div class="title-2 mb-16" style="color: white !important">
+                    Gabung bersama kami sekarang, lewat PPDB!
                 </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, hic.
+                <div class="text-center">
+                <a href="{{ url('https://cabdinbalikpapan.siap-ppdb.com/') }}" target="_blank" class="btn btn-secondary">
+                    DAFTAR SEKARANG
+                </a>
                 </div>
-            </div>
-            <div class="kanan ml-48">
-                <a href="{{ url('https://cabdinbalikpapan.siap-ppdb.com/') }}" target="_blank" class="btn btn-secondary">DAFTAR</a>
             </div>
         </div>
     </div>
