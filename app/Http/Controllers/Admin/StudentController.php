@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('is_admin', '!=', 1);
         return view('admin.user.index', compact('users'));
     }
 
@@ -60,8 +60,9 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->route('admin.user.index');
     }
 }

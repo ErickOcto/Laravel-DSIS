@@ -34,9 +34,11 @@
             Jurusan
           </a>
           <ul class="dropdown-menu">
-            @foreach ($majors as $major)
+            @forelse ($majors as $major)
             <li><a class="dropdown-item {{ request()->is('majors/' . $major->url) ? 'active' : '' }}" href="{{ route('major', $major->url) }}">{{ $major->name }}</a></li>
-            @endforeach
+            @empty
+            <li><a class="dropdown-item" href="#">Tidak Ada Jurusan</a></li>
+            @endforelse
           </ul>
         </li>
 

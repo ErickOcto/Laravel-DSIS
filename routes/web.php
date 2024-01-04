@@ -52,10 +52,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
 
     //Admin Majors Management Routes
     Route::resource('majors', MajorController::class);
-    Route::put('update-majors-status', [MajorController::class, 'updateStatus'])->name('majors.status');
+    Route::put('update-majors-status/{id}', [MajorController::class, 'updateStatus'])->name('majors.status');
+    Route::delete('majors/delete/{id}', [MajorController::class, 'delete']);
 
     // Admin Student Management Routes
     Route::resource('user', StudentController::class);
+    Route::delete('user/delete/{id}', [StudentController::class, 'delete']);
 
 });
 

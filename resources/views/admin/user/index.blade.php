@@ -49,8 +49,8 @@ Manajemen Pengguna
 <script>
     function confirmDelete(blogId) {
         Swal.fire({
-            title: 'Konfirmasi Hapus Blog',
-            text: 'Apakah Anda yakin ingin menghapus Blog?',
+            title: 'Konfirmasi Hapus Pengguna',
+            text: 'Apakah Anda yakin ingin menghapus Pengguna?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -59,7 +59,7 @@ Manajemen Pengguna
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/admin/blog/delete/${blogId}`,
+                    url: `/admin/user/delete/${blogId}`,
                     type: "DELETE",
                     data: {
                         "_token": "{{ csrf_token() }}"

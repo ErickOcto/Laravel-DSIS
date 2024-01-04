@@ -65,7 +65,11 @@ class MajorController extends Controller
         //
     }
 
-    public function updateStatus($id){
+    public function updateStatus(Request $request, $id){
+        $major = Major::findOrFail($id);
+        $major->update([
+            'status' => $request->status
+        ]);
         return redirect()->back();
     }
 }
