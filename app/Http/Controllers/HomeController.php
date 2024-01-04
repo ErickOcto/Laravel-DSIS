@@ -29,4 +29,10 @@ class HomeController extends Controller
             'lihat' => $blog->lihat + 1
         ]);
     }
+
+    public function blog(){
+        $blogs = Blog::orderBy('lihat', 'Desc')->take(4)->get();
+        $latests = Blog::latest()->take(4)->get();
+        return view('landing.blog.index', compact('blogs', 'latests'));
+    }
 }

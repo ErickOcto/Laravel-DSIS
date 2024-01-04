@@ -23,6 +23,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->name('detail-blog');
 Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
