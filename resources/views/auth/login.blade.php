@@ -47,10 +47,16 @@
                 <div class="mb-24">
                   <label for="formInputEmail" class="form-label title-5">Email</label>
                   <input type="email" class="form-control" id="formInputEmail" name="email" placeholder="Input email">
+                    @error('email')
+                        <strong class="text-danger">Ada Yang Salah Dengan Email Anda</strong>
+                    @enderror
                 </div>
                 <div class="mb-24">
                   <label for="formInputPassword" class="form-label title-5">Password</label>
                   <input type="password" class="form-control" id="formInputPassword" name="password" placeholder="Input password">
+                    @error('password')
+                        <strong class="text-danger">Ada Yang Salah Dengan Email Anda</strong>
+                    @enderror
                 </div>
                 <div class="subtitle-2 mb-24" style="color: #000;
                 font-size: 16px;

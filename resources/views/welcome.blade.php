@@ -11,7 +11,7 @@
 
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 60vh;">
+    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 70vh;">
       <div class="carousel-caption d-none d-md-block">
         <h5>Selamat Datang Di Website SMKN 6 Balikapapn</h5>
         <p>Some representative placeholder content for the first slide.</p>
@@ -19,7 +19,7 @@
     </div>
 
     @foreach ($carousel as $item)
-        <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 60vh">
+        <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 70vh">
           <img src="" class="d-block h-100" alt="carousel-photo">
           <div class="carousel-caption d-none d-md-block bg-white" style="border-radius: 24px;">
             @if(strlen($item->judul) > 40)
@@ -28,15 +28,20 @@
             <h3 class="text-black font-bold">{{ $item->judul }}</h3>
             @endif
 
-            @if(strlen($item->konten > 250))
-            <p class="text-black">{{ Str::limit(strip_tags($item->konten), 250) }}...</p>
+            @if(strlen($item->konten > 200))
+            <p class="text-black">{{ Str::limit(strip_tags($item->konten), 200) }}...</p>
             @else
             <p class="text-black">{{ strip_tags($item->konten) }}</p>
             @endif
 
-            <a href="{{ route('detail-blog', $item->slug) }}" class="btn btn-primary mt-8">
-            Baca Selengkapnya
-          </a>
+            <form action="{{ route('update-lihat', $item->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <a href="{{ route('detail-blog', $item->slug) }}" class="btn btn-primary mt-8">
+                    {{-- <button type="submit">Baca Selengkapnya</button> --}}
+                    Baca Selengkapnya
+                </a>
+            </form>
           </div>
         </div>
     @endforeach
@@ -52,6 +57,114 @@
   </button>
 </div>
 {{-- End Section 1 --}}
+
+{{-- Mitra Kami --}}
+<section class="container my-100 d-none d-md-block">
+    <div class="d-flex justify-content-between align-items-center mt-24">
+        <div class="kiri">
+            <div class="title-3 mb-8">
+                Dipercaya Perusahaan
+            </div>
+            <div class="subtitle-2">
+                Perusahaan Yang Mempercayai Alumni Kami
+            </div>
+        </div>
+        <div class="kanan">
+            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+        </div>
+    </div>
+
+    <div class=" d-flex justify-content-evenly mt-24">
+        <img src="/assets/image/mitra/bca.png" class="gambar-mitra d-none d-md-block" alt="bca">
+        <img src="/assets/image/mitra/tokped.png" class="gambar-mitra d-none d-md-block" alt="tokopedia">
+        <img src="/assets/image/mitra/bli.png" class="gambar-mitra d-none d-md-block" alt="blibli">
+        <img src="/assets/image/mitra/1000.png" class="gambar-mitra d-none d-md-block" alt="1000-startup">
+        <img src="/assets/image/mitra/kominfo.png" class="gambar-mitra d-none d-md-block" alt="kominfo">
+        <img src="/assets/image/mitra/logo-pemkot.png" class="gambar-mitra d-none d-md-block" alt="pemkot-balikpapan">
+    </div>
+
+</section>
+{{-- End Mitra Kami --}}
+
+{{-- Mitra KAmi Mobile --}}
+<section class="my-100 d-md-none d-sm-block">
+    <div class="container d-flex justify-content-between align-items-center mt-24">
+        <div class="kiri">
+            <div class="title-3 mb-8">
+                Dipercaya Perusahaan
+            </div>
+            <div class="subtitle-2">
+                Perusahaan Yang Mempercayai Alumni Kami
+            </div>
+        </div>
+        <div class="kanan">
+            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+        </div>
+    </div>
+    <div class="carousel-right mb-30">
+        <div class="carousel-wrapper-right">
+            <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/1000.png" class="logo" alt="harvard">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bca.png" class="logo" alt="monash">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bli.png" class="logo" alt="stanford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/kominfo.png" class="logo" alt="uw">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/logo-pemkot.png" class="logo" alt="oxford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/tokped.png" class="logo" alt="NTU">
+            </div>
+        </div>
+        <div class="carousel-wrapper-right">
+            <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/1000.png" class="logo" alt="harvard">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bca.png" class="logo" alt="monash">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bli.png" class="logo" alt="stanford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/kominfo.png" class="logo" alt="uw">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/logo-pemkot.png" class="logo" alt="oxford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/tokped.png" class="logo" alt="NTU">
+            </div>
+        </div>
+        <div class="carousel-wrapper-right">
+            <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/1000.png" class="logo" alt="harvard">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bca.png" class="logo" alt="monash">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/bli.png" class="logo" alt="stanford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/kominfo.png" class="logo" alt="uw">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/logo-pemkot.png" class="logo" alt="oxford">
+            </div>
+              <div class="card-brand mr-30">
+              <img src="/assets/image/mitra/tokped.png" class="logo" alt="NTU">
+            </div>
+        </div>
+    </div>
+</section>
+{{-- End Mitra Kami Mobile --}}
 
 {{-- Section 2 --}}
 <section class="container my-100">

@@ -22,4 +22,11 @@ class HomeController extends Controller
         $latests = Blog::latest()->take(4)->where('id', '!=', $blog->id)->get();
         return view('landing.blog.detail', compact('blog', 'latests'));
     }
+
+    public function updateLihat($id){
+        $blog = Blog::findOrFail($id);
+        $blog->update([
+            'lihat' => $blog->lihat + 1
+        ]);
+    }
 }

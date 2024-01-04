@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/detail-blog/{blog:slug}', [App\Http\Controllers\HomeController::class, 'detailBlog'])->name('detail-blog');
+Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->name('detail-blog');
+Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
@@ -34,13 +38,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
     Route::get('dashboard', [HomeController::class, 'dashboardAdmin'])->name('dashboard');
 
     //Admin Category Management Routes
-    Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
-    Route::delete('category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
+    Route::resource('category', CategoryController::class);
+    Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 
     //Admin Blog Management Routes
-    Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
-    Route::put('blog/update/carousel/{id}', [App\Http\Controllers\Admin\BlogController::class, 'updateStatus'])->name('blog-update-carousel');
-    Route::delete('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'delete']);
+    Route::resource('blog', BlogController::class);
+    Route::put('blog/update/carousel/{id}', [BlogController::class, 'updateStatus'])->name('blog-update-carousel');
+    Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
 
 });
 
