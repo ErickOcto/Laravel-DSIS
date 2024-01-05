@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -62,19 +63,12 @@ class MajorController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $major = Major::findOrFail($id);
+        return view('admin.majors.edit', compact('major'));
     }
 
     /**
@@ -82,7 +76,40 @@ class MajorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validators = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($validators->fails()){
+            return redirect()->back();
+        }
+
+        $major =  Major::findOrFail($id);
+
+        $url = Str::slug($request->name);
+
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $photo->storeAs('public/majors/', $photo->hashName());
+
+            Storage::delete('public/majors/'.$major->photo);
+
+            $major->update([
+                'photo' => $photo->hashName(),
+                'name' => $request->name,
+                'description' => $request->description,
+                'url' => $url,
+            ]);
+        }else{
+            $major->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'url' => $url,
+            ]);
+        }
+
+        return redirect()->route('admin.majors.index');
     }
 
     /**
