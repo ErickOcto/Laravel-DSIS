@@ -85,6 +85,14 @@ line-height: 28px; /* 175% */
     border-radius: 8px;
 }
 
+.title-black{
+    color: #1e1e1e;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%; /* 48px */
+}
+
 .title{
     color: #FFF;
     font-size: 48px;

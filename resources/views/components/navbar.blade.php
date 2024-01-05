@@ -30,7 +30,7 @@
         </li>
 
         <li class="nav-item mx-2 dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link {{ request()->is('majors*') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Jurusan
           </a>
           <ul class="dropdown-menu">
