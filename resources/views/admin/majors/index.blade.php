@@ -11,7 +11,7 @@
                 <h5 class="card-title">
                     Daftar Jurusan
                 </h5>
-                <a class="btn btn-primary" href="{{ route('admin.blog.create') }}">Buat jurusan</a>
+                <a class="btn btn-primary" href="{{ route('admin.majors.create') }}">Buat jurusan</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover" id="table1">
@@ -78,7 +78,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/admin/major/delete/${kategoriId}`,
+                    url: `/admin/majors/delete/${kategoriId}`,
                     type: "DELETE",
                     data: {
                         "_token": "{{ csrf_token() }}"

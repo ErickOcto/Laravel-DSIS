@@ -22,7 +22,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.majors.create');
     }
 
     /**
@@ -60,9 +60,10 @@ class MajorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        Major::find($id)->delete();
+        return redirect()->back();
     }
 
     public function updateStatus(Request $request, $id){
