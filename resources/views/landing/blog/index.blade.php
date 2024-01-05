@@ -5,7 +5,7 @@
 Blog Dan Berita
 @endsection
 @section('latihan-content')
-<section class="d-flex justify-content-center align-items-center" style="margin-top:100px; background: url('assets/image/layanan.png'); background-size:cover; height: 208px">
+<section class="d-flex justify-content-center align-items-center" style="margin-top:100px; background: url('assets/image/gabung.png'); background-size:cover; height: 208px">
     <div class="title">
         Blog dan Berita
     </div>
@@ -16,17 +16,17 @@ Blog Dan Berita
     <div class="d-flex justify-content-between align-items-center mb-24" id="fitur-kita">
         <div class="kiri">
             <div class="title-3 mb-8">
-                Blog Lainnya
+                Blog Terpopuler
             </div>
             <div class="subtitle-2">
-                Blog paling baru diupload
+                Blog paling banyak dilihat
             </div>
         </div>
         <div class="kanan">
-            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+            <a href="#populer" class="lihat-selengkapnya">Lihat selengkapnya</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="populer">
         @foreach ($blogs as $key => $blog)
             <div class="col-12 col-md-6 col-lg-3"
                 data-aos="zoom-in-up"
@@ -71,17 +71,17 @@ Blog Dan Berita
     <div class="d-flex justify-content-between align-items-center mb-24" id="fitur-kita">
         <div class="kiri">
             <div class="title-3 mb-8">
-                Blog Lainnya
+                Blog Terbaru
             </div>
             <div class="subtitle-2">
-                Blog paling baru diupload
+                Blog paling terakhir ditambahkan
             </div>
         </div>
         <div class="kanan">
-            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+            <a href="#terbanyak" class="lihat-selengkapnya">Lihat selengkapnya</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="terbanyak">
         @foreach ($latests as $key => $blog)
             <div class="col-12 col-md-6 col-lg-3"
                 data-aos="zoom-in-up"
