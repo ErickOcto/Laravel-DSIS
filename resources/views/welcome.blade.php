@@ -11,10 +11,10 @@
 
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" style="background: url('/image/esemka6.png'); background-size: cover; height: 70vh;">
+    <div class="carousel-item active" style="background: url('/image/smk_gacor.jpeg'); background-size: contain; height: 70vh;">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Selamat Datang Di Website SMKN 6 Balikapapn</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>Selamat Datang Di Website SMKN 6 Balikpapan</h5>
+        <p>Siap Menggacorkan Siswa Siswa Dan Anak Anak Anda</p>
       </div>
     </div>
 
@@ -37,9 +37,7 @@
             <form action="{{ route('update-lihat', $item->id) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <a href="{{ route('detail-blog', $item->slug) }}" class="btn btn-primary mt-8">
-                    {{-- <button type="submit">Baca Selengkapnya</button> --}}
-                    Baca Selengkapnya
+                    <button type="submit" class="btn btn-primary">Baca Selengkapnya</button>
                 </a>
             </form>
           </div>
