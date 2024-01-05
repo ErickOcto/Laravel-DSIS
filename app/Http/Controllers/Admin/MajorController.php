@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class MajorController extends Controller
 {
@@ -30,7 +33,32 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validators = Validator::make($request->all(), [
+            'name' => 'required',
+            'photo' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        $url = Str::slug($request->name);
+
+        $photo = $request->file('photo');
+        $photo->storeAs('public/majors', $photo->hashName());
+
+        Major::create([
+            'name' => $request->name,
+            'photo' => $photo->hashName(),
+            'description' => $request->description,
+            'user_id' => Auth::user()->id,
+            'url' => $url,
+        ]);
+
+        return redirect()->route('admin.majors.index')->with([
+            'type' => 'success',
+            'message' => 'successfully created'
+        ]);
     }
 
     /**

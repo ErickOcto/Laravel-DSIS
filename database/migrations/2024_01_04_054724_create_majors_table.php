@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('user_id');
             $table->string('url');
+            $table->string('photo')->nullable();
             $table->boolean('status')->default(0);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
