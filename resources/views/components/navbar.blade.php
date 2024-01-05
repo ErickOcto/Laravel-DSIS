@@ -42,7 +42,7 @@
           </ul>
         </li>
 
-        <li class="nav-item mx-2 dropdown">
+        {{-- <li class="nav-item mx-2 dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Informasi
           </a>
@@ -51,12 +51,13 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Informasi</a></li>
           </ul>
-        </li>
+        </li> --}}
 
         <li class="nav-item mx-2">
           <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" aria-current="page" href="{{ route('blog') }}">Berita</a>
         </li>
-        <li class="nav-item mx-2">
+
+        {{-- <li class="nav-item mx-2">
           <a class="nav-link" aria-current="page" href="#">Modul</a>
         </li>
 
@@ -69,7 +70,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Bursa Kerja Khusus</a></li>
           </ul>
-        </li>
+        </li> --}}
 
         @if(Auth::check())
         <form action="{{ route('logout') }}" method="POST">
