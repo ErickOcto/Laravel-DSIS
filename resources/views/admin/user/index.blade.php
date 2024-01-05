@@ -20,6 +20,7 @@ Manajemen Pengguna
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Photo User</th>
                             <th>Tanggal Ditambahkan</th>
@@ -29,6 +30,7 @@ Manajemen Pengguna
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td><img src="{{ asset('/storage/blogs/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>

@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ">
                 <h5 class="card-title">
-                    Daftar Blog 
+                    Daftar Blog
                 </h5>
                 <a class="btn btn-primary" href="{{ route('admin.blog.create') }}">Buat blog</a>
             </div>
@@ -17,6 +17,7 @@
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Photo Utama</th>
                             <th>Kategori</th>
@@ -29,6 +30,7 @@
                     <tbody>
                         @foreach ($blogs as $blog)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             @if(strlen($blog->judul) > 40)
                             <td>{{ Str::substr($blog->judul, 0, 40)}}...</td>
                             @else

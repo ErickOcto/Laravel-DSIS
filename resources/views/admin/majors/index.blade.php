@@ -17,6 +17,7 @@
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Logo Utama</th>
                             <th>Tanggal Ditambahkan</th>
@@ -27,6 +28,7 @@
                     <tbody>
                         @foreach ($majors as $major)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             @if(strlen($major->name) > 40)
                             <td>{{ Str::substr($major->name, 0, 40)}}...</td>
                             @else
