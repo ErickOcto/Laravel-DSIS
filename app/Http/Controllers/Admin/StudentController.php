@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin', '!=', 1);
+        $users = User::where('is_admin', 2)->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**

@@ -34,7 +34,15 @@
                 class="sidebar-item {{ request()->is('admin/user*') ? 'active' : '' }}">
                 <a href="{{ route('admin.user.index') }}" class='sidebar-link'>
                     <i class="bi bi-people-fill"></i>
-                    <span>Daftar Pengguna</span>
+                    <span>Daftar Siswa</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item {{ request()->is('admin/teacher*') ? 'active' : '' }}">
+                <a href="{{ route('admin.teacher.index') }}" class='sidebar-link'>
+                    <i class="bi bi-people-fill"></i>
+                    <span>Daftar Guru</span>
                 </a>
             </li>
 

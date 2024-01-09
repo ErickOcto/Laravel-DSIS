@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -12,7 +13,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('admin.teacher.index');
+        $users = User::where('is_admin', 1)->get();
+        return view('admin.teacher.index', compact('users'));
     }
 
     /**
@@ -58,7 +60,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
         //
     }

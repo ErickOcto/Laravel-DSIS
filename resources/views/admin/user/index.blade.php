@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
 @section('admin-title')
-Admin Manajemen Pengguna
+Admin - Manajemen Siswa
 @endsection
 
 @section('admin-header')
-Manajemen Pengguna
+Manajemen Siswa
 @endsection
 @section('admin-content')
     <section class="section">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ">
                 <h5 class="card-title">
-                    Daftar User
+                    Daftar Siswa
                 </h5>
-                <a class="btn btn-primary" href="{{ route('admin.user.create') }}">Buat user</a>
+                <a class="btn btn-primary" href="{{ route('admin.user.create') }}">Tambahkan Siswa</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover" id="table1">
@@ -22,7 +22,7 @@ Manajemen Pengguna
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Photo User</th>
+                            <th>Photo Siswa</th>
                             <th>Tanggal Ditambahkan</th>
                             <th class="min-w-100">Aksi</th>
                         </tr>
@@ -32,7 +32,11 @@ Manajemen Pengguna
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
-                            <td><img src="{{ asset('/storage/blogs/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
+                            @if ($user->photo)
+                            <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
+                            @else
+                            <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 50px"></td>
+                            @endif
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
