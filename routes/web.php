@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Teacher\DashboardController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,8 @@ Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->n
 Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/majors/{major:url}', [HomeController::class, 'majors'])->name('major');
-Route::get('/teachers', [HomeController::class, 'teachers'])->name('teachers');
-Route::get('/teachers/{id}', [HomeController::class, 'teacherDetails'])->name('teachers.detail');
+Route::get('/profile/teachers', [HomeController::class, 'teachers'])->name('teachers');
+Route::get('/profile/teachers/{id}', [HomeController::class, 'teacherDetails'])->name('teachers.detail');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
@@ -70,7 +71,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
 
 //Backend routes for teacher
 Route::prefix('teacher')->name('teacher.')->middleware('auth', 'makeSureRole:teacher')->group( function(){
-
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('teacher.dashboard');
 });
 
 Route::middleware('auth')->group(function () {

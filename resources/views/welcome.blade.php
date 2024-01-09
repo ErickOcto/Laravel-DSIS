@@ -1,5 +1,9 @@
 @extends('layouts.latihan')
 
+@section('latihan-title')
+SMKN 6 Balikpapan
+@endsection
+
 @section('latihan-content')
 {{-- Section 1 --}}
 <div id="carouselExampleCaptions" class="carousel slide">
