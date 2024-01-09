@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 
-@section('admin-header')
 
+@section('admin-title')
+Admin - Manajemen Jurusan
+@endsection
+
+@section('admin-header')
+Manajemen Jurusan
 @endsection
 
 @section('admin-content')

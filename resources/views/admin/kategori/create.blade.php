@@ -1,5 +1,13 @@
 @extends('layouts.admin')
 
+@section('admin-title')
+Admin - Manajemen kategori
+@endsection
+
+@section('admin-header')
+Manajemen Kategori - Buat Kategori
+@endsection
+
 @section('admin-content')
     <section class="section">
         <div class="row">

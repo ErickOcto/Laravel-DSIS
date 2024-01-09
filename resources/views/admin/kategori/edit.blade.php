@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('admin-title')
-Admin - Kategori Edit
+Admin - Manajemen Kategori
 @endsection
 
 @section('admin-header')
-Edit Kategori
+Manajemen Kategori - Edit - {{ $kategori->nama }}
 @endsection
 
 @section('admin-content')

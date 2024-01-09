@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('admin-title')
-Admin - Kategori Blog
+Admin - Manajemen Kategori
 @endsection
 
 @section('admin-header')
-Kategori Blog
+Manajemen Kategori
 @endsection
 
 @section('admin-content')

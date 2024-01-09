@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 
-@section('admin-header')
+@section('admin-title')
+Admin - Manajemen Blog
+@endsection
 
+@section('admin-header')
+Manajemen Blog
 @endsection
 
 @section('admin-content')

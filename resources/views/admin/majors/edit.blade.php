@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 
+@section('admin-title')
+Admin - Manajemen Jurusan
+@endsection
+
 @section('admin-header')
-Edit Jurusan
+Manajemen Jurusan - Edit - {{ $major->name }}
 @endsection
 
 @section('admin-content')
