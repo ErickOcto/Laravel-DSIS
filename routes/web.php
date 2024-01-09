@@ -27,6 +27,8 @@ Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->n
 Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/majors/{major:url}', [HomeController::class, 'majors'])->name('major');
+Route::get('/teachers', [HomeController::class, 'teachers'])->name('teachers');
+Route::get('/teachers/{id}', [HomeController::class, 'teacherDetails'])->name('teachers.detail');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
