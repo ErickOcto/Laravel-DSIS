@@ -52,7 +52,6 @@ class MajorController extends Controller
             'name' => $request->name,
             'photo' => $photo->hashName(),
             'description' => $request->description,
-            'user_id' => Auth::user()->id,
             'url' => $url,
         ]);
 

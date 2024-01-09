@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id');
             $table->string('url');
             $table->string('photo')->nullable();
             $table->boolean('status')->default(0);
