@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -58,6 +59,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')
     // Admin Student Management Routes
     Route::resource('user', StudentController::class);
     Route::delete('user/delete/{id}', [StudentController::class, 'delete']);
+
+    //Admin Teacher Management Routes
+    Route::resource('teacher', TeacherController::class);
+    Route::delete('teacher/delete/{id}', [TeacherController::class, 'delete']);
+
+});
+
+//Backend routes for teacher
+Route::prefix('teacher')->name('teacher.')->middleware('auth', 'makeSureRole:teacher')->group( function(){
 
 });
 
