@@ -21,9 +21,8 @@ Manajemen Guru
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th></th>
                             <th>Nama</th>
-                            <th>Photo Guru</th>
                             <th>Kejuruan</th>
                             <th>Tanggal Ditambahkan</th>
                             <th class="min-w-100">Aksi</th>
@@ -32,13 +31,12 @@ Manajemen Guru
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
                             @if ($user->image)
-                            <td><img src="{{ asset('/storage/users/'.$user->image) }}" class="rounded" style="width: 150px"></td>
-                            @else
-                            <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
+                                <td><img src="{{ asset('/storage/users/'.$user->image) }}" class="" style="width: 50px; border-radius:50%"></td>
+                                @else
+                                <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="" style="width: 50px; border-radius:50%"></td>
                             @endif
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->Major->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>

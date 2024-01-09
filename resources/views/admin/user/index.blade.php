@@ -20,9 +20,9 @@ Manajemen Siswa
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th></th>
                             <th>Nama</th>
-                            <th>Photo Siswa</th>
+                            <th>Kejuruan</th>
                             <th>Tanggal Ditambahkan</th>
                             <th class="min-w-100">Aksi</th>
                         </tr>
@@ -30,13 +30,13 @@ Manajemen Siswa
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
                             @if ($user->photo)
-                            <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
-                            @else
-                            <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 50px"></td>
+                                <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
+                                @else
+                                <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 50px"></td>
                             @endif
+                            <td>{{ $user->name }}</td>
+                            <th>{{ $user->Major->name }}</th>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
