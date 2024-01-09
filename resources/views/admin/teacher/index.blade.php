@@ -13,9 +13,9 @@ Manajemen Guru
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ">
                 <h5 class="card-title">
-                    Daftar Siswa
+                    Daftar Guru
                 </h5>
-                <a class="btn btn-primary" href="{{ route('admin.user.create') }}">Tambahkan Siswa</a>
+                <a class="btn btn-primary" href="{{ route('admin.teacher.create') }}">Tambahkan Guru</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover" id="table1">
@@ -23,7 +23,8 @@ Manajemen Guru
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Photo Siswa</th>
+                            <th>Photo Guru</th>
+                            <th>Kejuruan</th>
                             <th>Tanggal Ditambahkan</th>
                             <th class="min-w-100">Aksi</th>
                         </tr>
@@ -33,11 +34,12 @@ Manajemen Guru
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
-                            @if ($user->photo)
-                            <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
+                            @if ($user->image)
+                            <td><img src="{{ asset('/storage/users/'.$user->image) }}" class="rounded" style="width: 150px"></td>
                             @else
-                            <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 50px"></td>
+                            <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
                             @endif
+                            <td>{{ $user->Major->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
@@ -56,8 +58,8 @@ Manajemen Guru
 <script>
     function confirmDelete(blogId) {
         Swal.fire({
-            title: 'Konfirmasi Hapus Pengguna',
-            text: 'Apakah Anda yakin ingin menghapus Pengguna?',
+            title: 'Konfirmasi Hapus Guru',
+            text: 'Apakah Anda yakin ingin menghapus Guru?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

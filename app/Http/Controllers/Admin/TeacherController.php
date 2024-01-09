@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -22,7 +24,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('admin.teacher.create');
+        $majors = Major::all();
+        return view('admin.teacher.create', compact('majors'));
     }
 
     /**
@@ -30,7 +33,32 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $validators = Validator::make($request->all(), [
+            'photo' => 'image|mimes:png,jpg,jpeg,gif',
+            'major_id' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:users,email|email',
+            'password' => 'required|min:8',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        $image = $request->file('photo');
+        $image->storeAs('public/users', $image->hashName());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'image' => $image->hashName(),
+            'is_admin' => 1,
+            'major_id' => $request->major_id,
+        ]);
+
+        return redirect()->route('admin.teacher.index');
     }
 
     /**
@@ -62,6 +90,7 @@ class TeacherController extends Controller
      */
     public function delete(string $id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->back();
     }
 }

@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'image',
         'is_admin',
+        'major_id',
+        'bio',
     ];
 
     /**
@@ -44,4 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Major()
+    {
+        return $this->belongsTo(Major::class);
+    }
 }
