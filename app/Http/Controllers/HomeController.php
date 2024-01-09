@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     public function teacherDetails($id){
         $teacher = User::where('id', $id)->first();
-        return view('landing.blog.detail', compact('teacher'));
+        return view('landing.teachers.detail', compact('teacher'));
     }
 
 }
