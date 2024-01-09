@@ -22,10 +22,31 @@ class UserSeeder extends Seeder
             'is_admin' => 0,
             ],
             [
-            'name' => 'Shifa Sharifah Maulida',
+            'name' => 'Ifa',
             'email' => 'shifa@example.com',
             'password' => bcrypt('password'),
             'major_id' => 1,
+            'is_admin' => 1,
+            ],
+            [
+            'name' => 'Iyaka Samanda Caysar',
+            'email' => 'iyaka@example.com',
+            'password' => bcrypt('password'),
+            'major_id' => 2,
+            'is_admin' => 1,
+            ],
+            [
+            'name' => 'Dafa Pandu Pratama Purwanto',
+            'email' => 'dafa@example.com',
+            'password' => bcrypt('password'),
+            'major_id' => 1,
+            'is_admin' => 1,
+            ],
+            [
+            'name' => 'Gerlach Novellino Morgaret',
+            'email' => 'novel@example.com',
+            'password' => bcrypt('password'),
+            'major_id' => 2,
             'is_admin' => 1,
             ],
             [
