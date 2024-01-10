@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('image')->nullable();
             $table->foreignId('classroom_id')->nullable();
+            $table->foreignId('major_id')->nullable();
             $table->text('bio')->nullable();
             $table->integer('is_admin')->default(2);
             $table->timestamp('email_verified_at')->nullable();

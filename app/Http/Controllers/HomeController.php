@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,7 +46,13 @@ class HomeController extends Controller
     }
 
     public function teachers(){
-        $teachers = User::where('is_admin', 1)->get();
+        $teachers = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
+                 ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
+                 ->where('users.is_admin', 1)
+                 ->select('users.name as name', 'majors.name as major_name',
+                 'classrooms.name as classroom_name', 'users.created_at as created_at',
+                 'users.image as photo', 'users.id as id', 'users.email as email')
+                 ->get();
         return view('landing.teachers.index', compact('teachers'));
     }
 

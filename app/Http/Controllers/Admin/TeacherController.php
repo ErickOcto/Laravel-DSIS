@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin', 1)->get();
+        $users = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
+                 ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
+                 ->where('users.is_admin', 1)
+                 ->select('users.name as name', 'majors.name as major_name',
+                 'classrooms.name as classroom_name', 'users.created_at as created_at',
+                 'users.image as photo', 'users.id as id', 'users.email as email')
+                 ->get();
         return view('admin.teacher.index', compact('users'));
     }
 
@@ -24,8 +31,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $majors = Major::all();
-        return view('admin.teacher.create', compact('majors'));
+        $classrooms = Classroom::all();
+        return view('admin.teacher.create', compact('classrooms'));
     }
 
     /**

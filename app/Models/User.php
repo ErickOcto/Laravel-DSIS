@@ -25,6 +25,7 @@ class User extends Authenticatable
         'is_admin',
         'major_id',
         'bio',
+        'classroom_id',
     ];
 
     /**

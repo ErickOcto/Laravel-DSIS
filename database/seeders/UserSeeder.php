@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 1,
+            'major_id' => 2,
             'is_admin' => 0,
             ],
             [
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
             'email' => 'shifa@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 1,
+            'major_id' => 2,
             'is_admin' => 1,
             ],
             [
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
             'email' => 'iyaka@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 2,
+            'major_id' => 2,
             'is_admin' => 1,
             ],
             [
@@ -40,6 +43,7 @@ class UserSeeder extends Seeder
             'email' => 'dafa@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 1,
+            'major_id' => 2,
             'is_admin' => 1,
             ],
             [
@@ -47,6 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'novel@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 2,
+            'major_id' => 2,
             'is_admin' => 1,
             ],
             [
@@ -54,6 +59,7 @@ class UserSeeder extends Seeder
             'email' => 'erick@example.com',
             'password' => bcrypt('password'),
             'classroom_id' => 1,
+            'major_id' => 2,
             'is_admin' => 2,
             ]
         ]);

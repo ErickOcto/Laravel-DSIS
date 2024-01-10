@@ -24,7 +24,7 @@ Daftar Guru SMKN6
         <tr>
           <th scope="row">{{ $loop->iteration }}</th>
           <td>{{ $item->name }}</td>
-          <td>{{ $item->Major->name }}</td>
+          <td>{{ $item->major_name }}</td>
           <td><a href="{{ route('teachers.detail', $item->id) }}" class="btn btn-secondary">Lihat Detail</a></td>
         </tr>
         @empty
