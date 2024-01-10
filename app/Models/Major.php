@@ -11,14 +11,4 @@ class Major extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
-
-    /**
-     * Get the User that owns the Major
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function User()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

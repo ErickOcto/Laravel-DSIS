@@ -52,8 +52,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Major()
-    {
-        return $this->belongsTo(Major::class);
+
+    public function Classroom(){
+        $this->belongsTo(Classroom::class);
     }
 }
