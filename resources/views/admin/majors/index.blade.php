@@ -26,7 +26,6 @@ Manajemen Jurusan
                             <th>Judul</th>
                             <th>Logo Utama</th>
                             <th>Tanggal Ditambahkan</th>
-                            <th>Kreator</th>
                             <th class="min-w-100">Aksi</th>
                         </tr>
                     </thead>
@@ -46,7 +45,6 @@ Manajemen Jurusan
                             @endif
 
                             <td>{{ \Carbon\Carbon::parse($major->created_at)->format('H:i d F Y') }}</td>
-                            <td>{{ $major->User->name ?? "Admin Sebelumnya"}}</td>
                             <td>
                                 <a href="{{ route('admin.majors.edit', $major->id) }}" class="btn btn-warning">Edit</a>
                                 <a onclick="confirmDelete({{ $major->id }})" class="btn btn-danger">Hapus</a>

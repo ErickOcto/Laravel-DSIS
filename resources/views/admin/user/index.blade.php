@@ -22,6 +22,8 @@ Manajemen Siswa
                         <tr>
                             <th></th>
                             <th>Nama</th>
+                            <th>Email</th>
+                            <th>Kelas</th>
                             <th>Kejuruan</th>
                             <th>Tanggal Ditambahkan</th>
                             <th class="min-w-100">Aksi</th>
@@ -36,7 +38,9 @@ Manajemen Siswa
                                 <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
                             @endif
                             <td>{{ $user->name }}</td>
-                            <th>{{ $user->Major->name }}</th>
+                            <td>{{ $user->email }}</td>
+                            <th>{{ $user->classroom_name }}</th>
+                            <th>{{ $user->major_name }}</th>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
