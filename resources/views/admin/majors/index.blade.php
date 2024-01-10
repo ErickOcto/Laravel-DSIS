@@ -39,7 +39,12 @@ Manajemen Jurusan
                             @else
                             <td>{{ $major->name }}</td>
                             @endif
+                            @if($major->photo)
                             <td><img src="{{ asset('/storage/majors/'.$major->photo) }}" class="rounded" style="width: 150px"></td>
+                            @else
+                            <td><img src="{{ asset('users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
+                            @endif
+
                             <td>{{ \Carbon\Carbon::parse($major->created_at)->format('H:i d F Y') }}</td>
                             <td>{{ $major->User->name ?? "Admin Sebelumnya"}}</td>
                             <td>

@@ -12,7 +12,12 @@ Jurusan {{ $major->name }}
 </section>
 <section class="container my-48">
     <div class="text-center">
-        <img src="{{ asset('/storage/majors/' . $major->photo) }}" alt="" style="max-height: 300px">
+        @if($major->photo)
+        <img src="{{ asset('/storage/majors/' . $major->photo) }}" alt="" style="max-height: 300px; border-radius:50%">
+        @else
+        <img src="{{ asset('/users/user_pp_default.jpeg') }}" alt="" style="max-height: 300px; border-radius:50%">
+        @endif
+
     </div>
 </section>
 <section class="container my-100">

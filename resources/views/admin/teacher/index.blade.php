@@ -37,7 +37,7 @@ Manajemen Guru
                                 <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="" style="width: 50px; border-radius:50%"></td>
                             @endif
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->Major->name }}</td>
+                            <td>{{ $user->Major->name ?? "Tidak Memiliki Jurusan" }}</td>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>

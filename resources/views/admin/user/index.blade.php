@@ -33,7 +33,7 @@ Manajemen Siswa
                             @if ($user->photo)
                                 <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
                                 @else
-                                <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 50px"></td>
+                                <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
                             @endif
                             <td>{{ $user->name }}</td>
                             <th>{{ $user->Major->name }}</th>
