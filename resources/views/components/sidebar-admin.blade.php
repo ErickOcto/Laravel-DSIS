@@ -51,7 +51,7 @@
             <li
                 class="sidebar-item {{ request()->is('admin/majors*') ? 'active' : '' }}">
                 <a href="{{ route('admin.majors.index') }}" class='sidebar-link'>
-
+                    <i class="bi bi-subtract"></i>
                     <span>Daftar Jurusan</span>
                 </a>
             </li>
