@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('book_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('book_id')->constrained();
             $table->date('borrow_date');
             $table->date('return_date');
             $table->timestamps();

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->foreignId('book_category_id')->constrained();
-            $table->foreignId('borrow_id')->constrained();
+            $table->foreignId('book_category_id');
             $table->integer('stock');
             $table->date('year');
             $table->timestamps();
