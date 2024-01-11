@@ -88,6 +88,8 @@ Route::prefix('teacher')->name('teacher.')->middleware('auth', 'makeSureRole:tea
 //Backend routes for officer
 Route::prefix('officer')->name('officer')->middleware('auth', 'makeSureRole:officer')->group(function(){
     Route::get('dashboard', [OfficerDashboard::class, 'index']);
+
+    
 });
 
 Route::middleware('auth')->group(function () {
