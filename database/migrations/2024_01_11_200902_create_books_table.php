@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('kode_buku');
             $table->string('author');
             $table->foreignId('book_category_id');
             $table->integer('stock');
