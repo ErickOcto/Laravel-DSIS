@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\User;
@@ -30,6 +31,13 @@ class HomeController extends Controller
         $blog = Blog::findOrFail($id);
         $blog->update([
             'lihat' => $blog->lihat + 1
+        ]);
+
+        $categories = Category::where('id', '=', $blog->category_id)->first();
+
+        //dd($categories);
+        $categories->update([
+            'lihat' => $categories->lihat + 1
         ]);
 
         return redirect()->route('detail-blog', $blog->slug);

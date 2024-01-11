@@ -54,6 +54,16 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
 
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Major()
+    {
+        return $this->belongsTo(Major::class);
+    }
+
     public function Classroom(){
         $this->belongsTo(Classroom::class);
     }

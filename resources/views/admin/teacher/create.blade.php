@@ -39,10 +39,10 @@ Manajemen Guru - Tambahkan Guru
                                     >Jurusan Guru</label
                                   >
                                     <fieldset class="form-group">
-                                        <select class="form-select" name="classroom_id" id="kategori-column" required>
+                                        <select class="form-select" name="major_id" id="kategori-column" required>
                                             <option value="" disabled>Pilih Jurusan</option>
-                                            @foreach ($classrooms as $classroom)
-                                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                            @foreach ($majors as $major)
+                                            <option value="{{ $major->id }}">{{ $major->name }}</option>
                                             @endforeach
                                         </select>
                                     </fieldset>

@@ -35,12 +35,20 @@ Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
 })->name('profile.visi');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+//Backend routes for students
+Route::middleware(['auth', 'verified', 'makeSureRole:student'])->group( function(){
+
+    //Student dashboard routes
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    //Student book
+});
 
 // Backend routes for admin
-Route::prefix('admin')->name('admin.')->middleware('auth', 'makeSureRole:admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin', 'verified'])->group(function () {
 
     // Dashboard routes
     Route::get('dashboard', [HomeController::class, 'dashboardAdmin'])->name('dashboard');
