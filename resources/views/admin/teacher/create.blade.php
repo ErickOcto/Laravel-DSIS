@@ -77,6 +77,12 @@ Manajemen Guru - Tambahkan Guru
 
                                  </div>
                             </div>
+                            <div class="col-12">
+                            <label for="summernote" class="form-label"
+                            >Konten</label
+                          >
+                        <textarea name="bio" class="form-control" placeholder="Masukkan Deskripsi Guru, Seperti Pengalaman, Skill, dll."></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
