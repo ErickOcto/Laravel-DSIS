@@ -65,6 +65,6 @@ class User extends Authenticatable
     }
 
     public function Classroom(){
-        $this->belongsTo(Classroom::class);
+        return $this->belongsTo(Classroom::class);
     }
 }

@@ -63,6 +63,7 @@ class TeacherController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'bio' => $request->bio,
             'image' => $image->hashName(),
             'is_admin' => 1,
             'major_id' => $request->major_id,

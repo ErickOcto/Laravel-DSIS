@@ -69,4 +69,9 @@ class HomeController extends Controller
         return view('landing.teachers.detail', compact('teacher'));
     }
 
+    // For Facility
+    public function facilities(){
+        return view('landing.facilities.index');
+    }
+
 }

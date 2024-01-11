@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -14,14 +16,14 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //$users = User::where('is_admin', 2)->get();
-        $users = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
-                 ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
-                 ->where('users.is_admin', 2)
-                 ->select('users.name as name', 'majors.name as major_name',
-                 'classrooms.name as classroom_name', 'users.created_at as created_at',
-                 'users.image as photo', 'users.id as id', 'users.email as email')
-                 ->get();
+        $users = User::where('is_admin', 2)->get();
+        // $users = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
+        //          ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
+        //          ->where('users.is_admin', 2)
+        //          ->select('users.name as name', 'majors.name as major_name',
+        //          'classrooms.name as classroom_name', 'users.created_at as created_at',
+        //          'users.image as photo', 'users.id as id', 'users.email as email')
+        //          ->get();
 
         //dd($users);
         return view('admin.user.index', compact('users'));
@@ -32,7 +34,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $classrooms = Classroom::all();
+        $majors = Major::all();
+        return view('admin.user.create', compact('majors', 'classrooms'));
     }
 
     /**
@@ -40,7 +44,38 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $classroom = Classroom::where('id', '=', $request->classroom_id)->first();
+
+        $major = Major::where('id', $classroom->major_id)->first();
+
+        $validators = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'classroom_id' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back()->with([
+                'type' => 'success',
+                'message' => 'Sorry, Something went wrong',
+            ]);
+        }
+
+        $image = $request->file('photo');
+        $image->storeAs('public/users', $image->hashName());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'major_id' => $major->id,
+            'classroom_id' => $request->classroom_id,
+            'is_admin' => 2,
+            'image' => $image->hashName(),
+        ]);
+
+        return redirect(route('admin.user.index'));
     }
 
     /**
