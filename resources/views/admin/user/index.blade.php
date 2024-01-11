@@ -39,8 +39,8 @@ Manajemen Siswa
                             @endif
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <th>{{ $user->classroom_name }}</th>
-                            <th>{{ $user->major_name }}</th>
+                            <th>{{ $user->Classroom->name ?? "Tidak Memiliki Kelas" }}</th>
+                            <th>{{ $user->Major->name ?? "Tidak Memiliki Jurusan" }}</th>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>

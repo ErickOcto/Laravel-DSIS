@@ -30,6 +30,8 @@ Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/majors/{major:url}', [HomeController::class, 'majors'])->name('major');
 Route::get('/profile/teachers', [HomeController::class, 'teachers'])->name('teachers');
 Route::get('/profile/teachers/{id}', [HomeController::class, 'teacherDetails'])->name('teachers.detail');
+Route::get('/profile/facilities/', [HomeController::class, 'facilities'])->name('facilities');
+Route::get('/profile/facilities/{id}', [HomeController::class, 'facilityDetails'])->name('facilityDetails');
 
 Route::get('/profile/visi-misi', function () {
     return view('profile-sekolah.visi');
