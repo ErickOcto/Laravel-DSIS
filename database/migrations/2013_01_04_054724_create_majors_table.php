@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
+            $table->string('view')->default(0);
             $table->string('photo')->nullable();
             $table->boolean('status')->default(0);
             $table->text('description')->nullable();

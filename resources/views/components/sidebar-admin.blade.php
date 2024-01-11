@@ -59,13 +59,12 @@
             <li class="sidebar-title">Akun</li>
 
             <li
-                class="sidebar-item active d-grid gap-2 col-12">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit"  class="btn btn-primary">
-                        Logout
-                    </button>
-                </form>
+                class="sidebar-item">
+                <a href="{{ route('profile.edit') }}" class='sidebar-link'>
+
+                    <span>Setelan Akun</span>
+                </a>
             </li>
+
         </ul>
     </div>

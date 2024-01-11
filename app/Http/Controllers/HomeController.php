@@ -18,7 +18,8 @@ class HomeController extends Controller
         return view('welcome', compact('blogs', 'latests', 'carousel'));
     }
     public function dashboardAdmin(){
-        return view('admin.dashboard');
+        $popularBlogs = Blog::orderBy('lihat', 'Desc')->take(3)->get();
+        return view('admin.dashboard', compact('popularBlogs'));
     }
 
     public function detailBlog(Blog $blog){
