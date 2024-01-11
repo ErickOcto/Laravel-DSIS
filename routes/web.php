@@ -6,9 +6,13 @@ use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Officer\BookCategoryController;
+use App\Http\Controllers\Officer\BookController;
+use App\Http\Controllers\Officer\BorrowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Teacher\DashboardController;
 use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
+use App\Models\BookCategory;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -86,10 +90,17 @@ Route::prefix('teacher')->name('teacher.')->middleware('auth', 'makeSureRole:tea
 });
 
 //Backend routes for officer
-Route::prefix('officer')->name('officer')->middleware('auth', 'makeSureRole:officer')->group(function(){
-    Route::get('dashboard', [OfficerDashboard::class, 'index']);
+Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:officer')->group(function(){
+    Route::get('dashboard', [OfficerDashboard::class, 'index'])->name('dashboard');
 
-    
+    //Books category routes
+    Route::resource('book-categories', BookCategoryController::class);
+
+    //Books routes
+    Route::resource('books', BookController::class);
+
+    //Borrow routes
+    Route::get('borrow', [BorrowController::class, 'index']);
 });
 
 Route::middleware('auth')->group(function () {

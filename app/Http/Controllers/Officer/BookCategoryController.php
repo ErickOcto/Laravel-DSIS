@@ -12,7 +12,7 @@ class BookCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('officer.category.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class BookCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('officer.category.create');
     }
 
     /**
