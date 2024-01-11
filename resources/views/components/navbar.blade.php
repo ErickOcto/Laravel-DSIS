@@ -21,7 +21,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item {{ request()->is('profile/teachers*') ? 'active' : '' }}" href="{{ route('teachers') }}">Guru dan Tenaga Pendidikan</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sarana & Prasarana</a></li>
+            <li><a class="dropdown-item" href="{{ route('facilities') }}">Sarana & Prasarana</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Teaching Factory</a></li>
             <li><hr class="dropdown-divider"></li>

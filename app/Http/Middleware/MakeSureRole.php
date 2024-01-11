@@ -18,7 +18,7 @@ class MakeSureRole
     {
         $user = Auth::user();
         if(($role == 'admin' && $user->is_admin !== 0 || $role == 'teacher' && $user->is_admin !== 1 || $role == 'student' && $user->is_admin !== 2)){
-            abort(403);
+            abort(403, "You have no permission");
         }
         return $next($request);
     }

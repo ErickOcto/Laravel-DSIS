@@ -39,7 +39,7 @@ Route::get('/profile/visi-misi', function () {
 
 
 //Backend routes for students
-Route::middleware(['auth', 'verified', 'makeSureRole:student'])->group( function(){
+Route::middleware(['auth', 'verified', 'makeSureRole:student'])->name('teacher.')->group( function(){
 
     //Student dashboard routes
     Route::get('/dashboard', function () {

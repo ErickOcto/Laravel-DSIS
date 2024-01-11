@@ -19,11 +19,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::get();
-
         $jumlahBlog = count($blogs);
         $jumlahView = Blog::sum('lihat');
-
-        
         return view('admin.blog.index', compact('blogs', 'jumlahBlog', 'jumlahView'));
     }
 

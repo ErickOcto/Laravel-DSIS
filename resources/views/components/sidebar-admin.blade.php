@@ -51,10 +51,21 @@
             <li
                 class="sidebar-item {{ request()->is('admin/majors*') ? 'active' : '' }}">
                 <a href="{{ route('admin.majors.index') }}" class='sidebar-link'>
-                    <i class="bi bi-people-fill"></i>
+
                     <span>Daftar Jurusan</span>
                 </a>
             </li>
 
+            <li class="sidebar-title">Akun</li>
+
+            <li
+                class="sidebar-item active d-grid gap-2 col-12">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit"  class="btn btn-primary">
+                        Logout
+                    </button>
+                </form>
+            </li>
         </ul>
     </div>
