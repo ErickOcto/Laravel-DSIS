@@ -20,4 +20,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(Major::class);
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'teachers_subjects', 'id', 'user_id');
+    }
 }
