@@ -29,7 +29,7 @@ Manajemen Kategori - Buat Kategori
                                     id="judul-column"
                                     class="form-control"
                                     name="nama"
-                                    placeholder="Masukkan Judul"
+                                    placeholder="Masukkan Nama Kategori"
                                   />
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Officer;
 
 use App\Http\Controllers\Controller;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
 class BookCategoryController extends Controller
@@ -12,7 +13,8 @@ class BookCategoryController extends Controller
      */
     public function index()
     {
-        return view('officer.category.index');
+        $categories = BookCategory::all();
+        return view('officer.category.index', compact('categories'));
     }
 
     /**
@@ -28,38 +30,20 @@ class BookCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        BookCategory::create($request->all());
+        return redirect()->back()->with([
+            'type' => 'success',
+            'message' => 'Success added book category'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+
+    public function delete(string $id)
     {
-        //
+        BookCategory::find($id)->delete;
+        return redirect()->back();
     }
 }

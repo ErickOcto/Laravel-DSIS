@@ -94,8 +94,9 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     Route::get('dashboard', [OfficerDashboard::class, 'index'])->name('dashboard');
 
     //Books category routes
-    Route::resource('book-categories', BookCategoryController::class);
-
+    Route::get('book-categories', [BookCategoryController::class, 'index'])->name('book-categories.index');
+    Route::post('book-categories', [BookCategoryController::class, 'store'])->name('book-categories.store');
+    Route::delete('book-categories/delete/{id}', [BookCategoryController::class, 'delete']);
     //Books routes
     Route::resource('books', BookController::class);
 

@@ -15,7 +15,7 @@
             <li
                 class="sidebar-item {{ request()->is('officer/book-categories*') ? 'active' : '' }}">
                 <a href="{{ route('officer.book-categories.index') }}" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
+                    <i class="bi bi-tags-fill"></i>
                     <span>Kategori</span>
                 </a>
             </li>
@@ -23,7 +23,7 @@
             <li
                 class="sidebar-item {{ request()->is('officer/books*') ? 'active' : '' }}">
                 <a href="{{ route('officer.books.index') }}" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
+                    <i class="bi bi-book-fill"></i>
                     <span>Buku</span>
                 </a>
             </li>
