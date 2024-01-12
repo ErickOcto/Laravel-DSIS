@@ -46,13 +46,29 @@
                 </a>
             </li>
 
-            <li class="sidebar-title">Manajemen Jurusan</li>
+            <li
+                class="sidebar-item {{ request()->is('admin/teacher*') ? 'active' : '' }}">
+                <a href="{{ route('admin.teacher.index') }}" class='sidebar-link'>
+                    <i class="bi bi-people-fill"></i>
+                    <span>Daftar Petugas</span>
+                </a>
+            </li>
+
+            <li class="sidebar-title">Manajemen Profile</li>
 
             <li
                 class="sidebar-item {{ request()->is('admin/majors*') ? 'active' : '' }}">
                 <a href="{{ route('admin.majors.index') }}" class='sidebar-link'>
                     <i class="bi bi-subtract"></i>
                     <span>Daftar Jurusan</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item {{ request()->is('admin/majors*') ? 'active' : '' }}">
+                <a href="{{ route('admin.majors.index') }}" class='sidebar-link'>
+                    <i class="bi bi-subtract"></i>
+                    <span>Daftar Kelas</span>
                 </a>
             </li>
 

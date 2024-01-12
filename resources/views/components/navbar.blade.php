@@ -51,7 +51,7 @@
         @csrf
         <li class="nav-item mx-2 dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Halo, {{ Auth::user()->name }}
+            Halo, {{ Str::of(Auth::user()->name)->explode(' ')[0] }}
           </a>
           <div class="photo" style="max-width: 48px">
 
