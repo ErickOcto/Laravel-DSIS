@@ -97,6 +97,8 @@
 <div class="page-heading">
     <div class="d-flex align-items-center justify-content-between">
     <h3>@yield('admin-header')</h3>
+        <form action="{{ route('logout') }}" method="POST">
+        @csrf
         <li class="nav-item mx-2 dropdown" style="list-style: none">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Halo, {{ Str::of(Auth::user()->name)->explode(' ')[0] }}
@@ -109,6 +111,7 @@
             <button type="submit" class="dropdown-item"><i class=" me-2 bi bi-box-arrow-right"></i></i>Logout Dari Akun</button>
           </ul>
         </li>
+        </form>
     </div>
 </div>
 <div class="page-content">

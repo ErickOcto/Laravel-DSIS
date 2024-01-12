@@ -44,7 +44,7 @@ Route::get('/profile/visi-misi', function () {
 
 
 //Backend routes for students
-Route::middleware(['auth', 'verified', 'makeSureRole:student'])->name('teacher.')->group( function(){
+Route::middleware(['auth', 'verified', 'makeSureRole:student'])->group( function(){
 
     //Student dashboard routes
     Route::get('/dashboard', function () {
@@ -85,8 +85,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 });
 
 //Backend routes for teacher
-Route::prefix('teacher')->name('teacher.')->middleware('auth', 'makeSureRole:teacher')->group(function(){
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('teacher.dashboard');
+Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'makeSureRole:teacher'])->group(function(){
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
 
 //Backend routes for officer
