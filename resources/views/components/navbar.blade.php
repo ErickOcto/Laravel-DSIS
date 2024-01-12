@@ -49,12 +49,16 @@
         @if(Auth::check())
         <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <li class="nav-item mx-2 dropdown">
+        <li class="nav-item mx-2 dropdown d-flex align-items-center">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Halo, {{ Str::of(Auth::user()->name)->explode(' ')[0] }}
           </a>
-          <div class="photo" style="max-width: 48px">
-
+          <div class="ms-3 photo">
+            @if(Auth::user()->image)
+            <img src="/storage/users/{{ Auth::user()->image }}" alt="gambar-user" style="max-width: 48px; border-radius:50%">
+            @else
+            <img src="/users/user_pp_default.jpeg" alt="gambar-user" class="border-2" style="max-width: 48px; border-radius:50%; border:1px;">
+            @endif
           </div>
           <ul class="dropdown-menu">
             @if(Auth::user()->is_admin === 2)
@@ -63,6 +67,8 @@
             <li><a class="dropdown-item" href="{{ route('teacher.dashboard') }}">Dashboard Ku</a></li>
             @elseif(Auth::user()->is_admin === 0)
             <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard Ku</a></li>
+            @elseif(Auth::user()->is_admin === 3)
+            <li><a class="dropdown-item" href="{{ route('officer.dashboard') }}">Dashboard Ku</a></li>
             @endif
             <button type="submit" class="dropdown-item">Logout Dari Akun</button>
           </ul>

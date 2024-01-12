@@ -61,6 +61,14 @@ class UserSeeder extends Seeder
             'classroom_id' => 1,
             'major_id' => 2,
             'is_admin' => 2,
+            ],
+            [
+            'name' => 'Petugas Partai',
+            'email' => 'petugas@example.com',
+            'password' => bcrypt('password'),
+            'classroom_id' => 1,
+            'major_id' => 2,
+            'is_admin' => 3,
             ]
         ]);
     }

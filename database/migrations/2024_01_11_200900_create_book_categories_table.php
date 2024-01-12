@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('view');
             $table->string('name');
             $table->timestamps();
         });

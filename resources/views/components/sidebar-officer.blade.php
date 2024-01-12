@@ -20,6 +20,14 @@
                 </a>
             </li>
 
+            <li
+                class="sidebar-item {{ request()->is('officer/books*') ? 'active' : '' }}">
+                <a href="{{ route('officer.books.index') }}" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Buku</span>
+                </a>
+            </li>
+
             <li class="sidebar-title">Akun</li>
 
             <li

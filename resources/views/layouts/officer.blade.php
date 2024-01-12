@@ -95,12 +95,16 @@
 <div class="page-heading">
     <div class="d-flex align-items-center justify-content-between">
     <h3>@yield('officer-header')</h3>
-        <li class="nav-item mx-2 dropdown" style="list-style: none">
+        <li class="nav-item mx-2 dropdown d-flex align-items-center" style="list-style: none">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Halo, {{ Str::of(Auth::user()->name)->explode(' ')[0] }}
           </a>
-          <div class="photo" style="max-width: 48px">
-
+          <div class="ms-3 photo">
+            @if(Auth::user()->image)
+            <img src="/storage/users/{{ Auth::user()->image }}" alt="gambar-user" style="max-width: 48px; border-radius:50%">
+            @else
+            <img src="/users/user_pp_default.jpeg" alt="gambar-user" class="border-2" style="max-width: 48px; border-radius:50%; border:1px;">
+            @endif
           </div>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('home') }}"><i class=" me-2 bi bi-box-arrow-up-right"></i>Homepage</a></li>
