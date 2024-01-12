@@ -23,7 +23,11 @@ SMKN 6 Balikpapan
     </div>
 
     @foreach ($carousel as $item)
+        @if($item->photo)
         <div class="carousel-item" style="background: url('{{ asset('/storage/blogs/'.$item->photo) }}'); background-size: cover; height: 70vh">
+        @else
+        <div class="carousel-item" style="background: url('{{ asset('/users/no-image.jpeg') }}'); background-size: cover; height: 70vh">
+        @endif
           <img src="" class="d-block h-100" alt="carousel-photo">
           <div class="carousel-caption d-none d-md-block bg-white" style="border-radius: 24px;">
             @if(strlen($item->judul) > 40)
@@ -228,7 +232,7 @@ SMKN 6 Balikpapan
             </div>
         </div>
         <div class="kanan">
-            <a href="#" class="lihat-selengkapnya">Lihat selengkapnya</a>
+            <a href="{{ route('blog') }}" class="lihat-selengkapnya">Lihat selengkapnya</a>
         </div>
     </div>
     <div class="row">
@@ -242,7 +246,11 @@ SMKN 6 Balikpapan
                     @csrf
                     @method('PUT')
                 <div class="card blog">
+                    @if($blog->photo)
                     <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
+                    @else
+                    <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/users/no-image.jpeg') }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
+                    @endif
                     <div class="card-body">
                         <div class="title-5 mb-8">
                             {{ Str::limit($blog->judul, 25) }}
@@ -269,26 +277,3 @@ SMKN 6 Balikpapan
 </section>
 {{-- End Blog Lainnya --}}
 @endsection
-
-{{-- @push('add-script')
-<script>
-    $('.update-form').submit(function (e) {
-        e.preventDefault();
-
-        var form = $(this);
-
-        $.ajax({
-            url: form.attr('action'),
-            method: 'PUT', // Change this to 'PUT'
-            data: form.serialize(),
-            success: function (response) {
-                // Update berhasil, arahkan ke halaman detail-blog berdasarkan ID
-                window.location.href = "{{ route('detail-blog', 'ID') }}".replace('ID', response.id);
-            },
-            error: function (error) {
-                console.log('Update gagal:', error);
-            }
-        });
-    });
-</script>
-@endpush --}}

@@ -14,7 +14,7 @@ Blog - {{ $blog->judul }}
                 @if($blog->photo)
                 <img src="{{ asset('/storage/blogs/' . $blog->photo) }}" class="rounded" style="max-width: 500px" alt="{{ $blog->judul }}">
                 @else
-                <img src="{{ asset('/users/user_pp_default.jpeg') }}" style="max-width: 300px; border-radius:50%" alt="{{ $blog->judul }}">
+                <img src="{{ asset('/users/no-image.jpeg') }}" style="max-width: 300px; border-radius:50%" alt="{{ $blog->judul }}">
                 @endif
             </div>
             <p class="copy mt-48">
@@ -50,7 +50,11 @@ Blog - {{ $blog->judul }}
                     @csrf
                     @method('PUT')
                 <div class="card blog">
+                    @if($blog->photo)
                     <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/storage/blogs/' . $blog->photo) }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
+                    @else
+                    <div class="card-img-top" alt="gambar" style="background: url('{{ asset('/users/no-image.jpeg') }}'); height: 200px; background-size:cover; border-top-left-radius:24px; border-top-right-radius:24px;"></div>
+                    @endif
                     <div class="card-body">
                         <div class="title-5 mb-8">
                             {{ Str::limit($blog->judul, 25) }}
