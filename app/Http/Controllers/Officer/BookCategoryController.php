@@ -27,8 +27,7 @@ class BookCategoryController extends Controller
     {
         BookCategory::create($request->all());
         return redirect()->back()->with([
-            'type' => 'success',
-            'message' => 'Success added book category'
+            'success' => 'Kategori Buku berhasil ditambahkan'
         ]);
     }
 

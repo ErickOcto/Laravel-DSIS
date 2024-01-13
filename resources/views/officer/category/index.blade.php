@@ -22,6 +22,7 @@ Officer - Book Category
                                       class="form-control"
                                       name="name"
                                       placeholder="Masukkan Nama Kategori"
+                                      required
                                     />
                                     <input type="hidden" name="view" value="0">
                                 </div>

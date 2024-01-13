@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="/assets/compiled/css/app-dark.css">
   <link rel="stylesheet" href="/assets/compiled/css/iconly.css">
 
+    {{-- Toast --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
   {{-- SUMMERNOTE --}}
   <link rel="stylesheet" href="/assets/extensions/summernote/summernote-lite.css">
@@ -136,6 +138,20 @@
 
     <script src="/assets/compiled/js/app.js"></script>
 
+{{-- toast --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        //message with toastr
+        @if(session()->has('success'))
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
+
+        @elseif(session()->has('error'))
+
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
+        @endif
+    </script>
 
 
 <!-- Need: Apexcharts -->

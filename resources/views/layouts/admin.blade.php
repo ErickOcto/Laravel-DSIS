@@ -12,7 +12,8 @@
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" type="image/png">
 
-
+    {{-- Toast --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
   <link rel="stylesheet" href="/assets/compiled/css/app.css">
   <link rel="stylesheet" href="/assets/compiled/css/app-dark.css">
@@ -150,6 +151,22 @@
 {{-- DATATABLE --}}
 <script src="/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="/assets/static/js/pages/simple-datatables.js"></script>
+
+{{-- toast --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        //message with toastr
+        @if(session()->has('success'))
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
+
+        @elseif(session()->has('error'))
+
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
+        @endif
+    </script>
+
 </body>
 
 {{-- SUMMERNOTE --}}

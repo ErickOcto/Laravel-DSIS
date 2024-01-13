@@ -57,7 +57,7 @@ class BookController extends Controller
             'stock' => $request->stock
         ]);
 
-        return redirect()->route('officer.books.index');
+        return redirect()->route('officer.books.index')->with(['success' => "Buku berhasil ditambahkan"]);
     }
 
     /**
@@ -114,7 +114,7 @@ class BookController extends Controller
             ]);
         }
 
-        return redirect()->route('officer.books.index');
+        return redirect()->route('officer.books.index')->with(['success' => "Berhasil mengubah data buku"]);
     }
 
     /**
@@ -123,6 +123,8 @@ class BookController extends Controller
     public function delete(string $id)
     {
         Book::find($id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with([
+            'success' => "Berhasil menghapus data buku"
+        ]);
     }
 }
