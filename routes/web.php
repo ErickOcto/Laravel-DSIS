@@ -81,6 +81,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
     //Admin Teacher Management Routes
     Route::resource('teacher', TeacherController::class);
     Route::delete('teacher/delete/{id}', [TeacherController::class, 'delete']);
+    Route::post('teacher/addsub', [TeacherController::class, 'addsub'])->name('teacher.addsub');
+    Route::delete('teacher/delsub/{id}', [TeacherController::class, 'delsub'])->name('teacher.delsub');
 
 });
 

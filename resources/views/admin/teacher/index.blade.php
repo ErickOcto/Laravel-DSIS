@@ -40,7 +40,8 @@ Manajemen Guru
                             <td>{{ $user->Major->name ?? "Tidak Memiliki Jurusan" }}</td>
                             <td>{{ \Carbon\Carbon::parse($user->created_at)->format('H:i d F Y') }}</td>
                             <td>
-                                <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.teacher.show', $user->id) }}" class="btn btn-light">Setel</a>
+                                <a href="{{ route('admin.teacher.edit', $user->id) }}" class="btn btn-warning">Edit</a>
                                 <a onclick="confirmDelete({{ $user->id }})" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>

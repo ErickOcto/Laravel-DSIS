@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Major;
+use App\Models\Subject;
+use App\Models\TeachersSubject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
@@ -16,14 +19,6 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        // $users = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
-        //          ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
-        //          ->where('users.is_admin', 1)
-        //          ->select('users.name as name', 'majors.name as major_name',
-        //          'classrooms.name as classroom_name', 'users.created_at as created_at',
-        //          'users.image as photo', 'users.id as id', 'users.email as email')
-        //          ->get();
-
         $users = User::where('is_admin', 1)->get();
         return view('admin.teacher.index', compact('users'));
     }
@@ -43,7 +38,6 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $validators = Validator::make($request->all(), [
             'photo' => 'image|mimes:png,jpg,jpeg,gif',
             'major_id' => 'required',
@@ -77,7 +71,32 @@ class TeacherController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $teacher = User::findOrFail($id);
+        $classes = Classroom::all();
+        $subjects = Subject::all();
+        $users = DB::table('teachers_subjects')
+                ->join('users', 'teachers_subjects.user_id', '=', 'users.id')
+                ->join('subjects', 'teachers_subjects.subject_id', '=', 'subjects.id')
+                ->join('classrooms', 'teachers_subjects.classroom_id', '=', 'classrooms.id')
+                ->select('classrooms.name as classroom_name', 'subjects.name as subject_name', 'teachers_subjects.id as id')
+                ->get();
+        return view('admin.teacher.detail', compact('teacher', 'classes', 'subjects', 'users'));
+    }
+
+    public function addsub(Request $request){
+        $validators = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'classroom_id' => 'required',
+            'subject_id' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        TeachersSubject::create($request->all());
+
+        return redirect()->back()->with(['success' => "Data mata pelajaran dan kelas berhasil ditambahkan"]);
     }
 
     /**
@@ -102,6 +121,12 @@ class TeacherController extends Controller
     public function delete(string $id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => "Data guru berhasil dihapus"]);
+    }
+
+    public function delsub(string $id)
+    {
+        TeachersSubject::findOrFail($id)->delete();
+        return redirect()->back()->with(['success' => "Data berhasil dihapus"]);
     }
 }
