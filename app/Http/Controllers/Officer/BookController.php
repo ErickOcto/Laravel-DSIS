@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Officer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('officer.book.index', compact('books'));
     }
 
     /**
@@ -20,21 +23,14 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $categories = BookCategory::all();
+        return view('officer.book.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
         //
     }
@@ -58,8 +54,9 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        Book::find($id)->delete();
+        return redirect()->back();
     }
 }

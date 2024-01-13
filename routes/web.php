@@ -94,11 +94,11 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     Route::get('dashboard', [OfficerDashboard::class, 'index'])->name('dashboard');
 
     //Books category routes
-    Route::get('book-categories', [BookCategoryController::class, 'index'])->name('book-categories.index');
-    Route::post('book-categories', [BookCategoryController::class, 'store'])->name('book-categories.store');
+    Route::resource('book-categories', BookCategoryController::class);
     Route::delete('book-categories/delete/{id}', [BookCategoryController::class, 'delete']);
     //Books routes
     Route::resource('books', BookController::class);
+    Route::delete('books/delete/{id}', [BookController::class, 'delete']);
 
     //Borrow routes
     Route::get('borrow', [BorrowController::class, 'index']);

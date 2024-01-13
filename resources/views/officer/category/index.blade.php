@@ -1,7 +1,7 @@
 @extends('layouts.officer')
 
 @section('officer-header')
-Officer - Dashboard
+Officer - Book Category
 @endsection
 
 @section('officer-content')

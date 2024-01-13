@@ -17,14 +17,9 @@ class BookCategoryController extends Controller
         return view('officer.category.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('officer.category.create');
+    public function create(){
+        //
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -37,6 +32,13 @@ class BookCategoryController extends Controller
         ]);
     }
 
+    public function edit(){
+        //
+    }
+
+    public function destroy(){
+        //
+    }
     /**
      * Remove the specified resource from storage.
      */
