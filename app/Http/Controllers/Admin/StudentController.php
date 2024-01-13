@@ -72,6 +72,7 @@ class StudentController extends Controller
             'major_id' => $major->id,
             'classroom_id' => $request->classroom_id,
             'is_admin' => 2,
+            'nis' => $request->nis,
             'image' => $image->hashName(),
         ]);
 

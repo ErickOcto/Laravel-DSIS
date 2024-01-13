@@ -50,6 +50,21 @@ Manajemen Siswa - Buat Siswa
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
+                                  <label for="judul-column" class="form-label"
+                                    >NIS Siswa</label
+                                  >
+                                  <input
+                                    type="text"
+                                    id="judul-column"
+                                    class="form-control"
+                                    name="nis"
+                                    placeholder="Masukkan NIS Siswa"
+                                    data-parsley-required="true"
+                                  />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
                                     <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-upload"></i></label>
                                     <input type="file" class="form-control" name="photo" accept=".png, .jpg" id="inputGroupFile01" required>
                                 </div>

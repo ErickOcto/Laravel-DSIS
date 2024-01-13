@@ -22,6 +22,7 @@ Manajemen Siswa
                         <tr>
                             <th></th>
                             <th>Nama</th>
+                            <th>NIS</th>
                             <th>Email</th>
                             <th>Kelas</th>
                             <th>Kejuruan</th>
@@ -32,12 +33,13 @@ Manajemen Siswa
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
-                            @if ($user->photo)
-                                <td><img src="{{ asset('/storage/users/'.$user->photo) }}" class="rounded" style="width: 150px"></td>
+                            @if ($user->image)
+                                <td><img src="{{ asset('/storage/users/'.$user->image) }}" class="rounded" style="width: 150px"></td>
                                 @else
                                 <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
                             @endif
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->nis}}</td>
                             <td>{{ $user->email }}</td>
                             <th>{{ $user->Classroom->name ?? "Tidak Memiliki Kelas" }}</th>
                             <th>{{ $user->Major->name ?? "Tidak Memiliki Jurusan" }}</th>
