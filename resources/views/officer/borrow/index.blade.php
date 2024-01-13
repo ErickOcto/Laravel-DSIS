@@ -34,7 +34,11 @@ Petugas - Manajemen Peminjaman
                             <td>{{ $borrow->title }}</td>
                             <td>{{ $borrow->book_code }}</td>
                             <td>{{ \Carbon\Carbon::parse($borrow->borrow_date)->format('d F Y') }}</td>
+                            @if($borrow->return_date)
+                            <td>{{ \Carbon\Carbon::parse($borrow->return_date)->format('d F Y') }}</td>
+                            @else
                             <td>{{ $borrow->return_date ?? "Belum dikembalikan"}}</td>
+                            @endif
                             <td>
                                 @if($borrow->return_date)
                                 <a href="#" class="btn btn-info disabled">Sudah Dikembalikan</a>

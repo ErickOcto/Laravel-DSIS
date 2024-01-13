@@ -35,7 +35,7 @@ Petugas - Manajemen Peminjaman
                         />
                     </div>
                     <div class="col-2 d-grid">
-                        <button class="btn btn-primary" type="submit">Cari User</button>
+                        <button class="btn btn-primary" type="submit">Cari</button>
                     </div>
                   </div>
                 </div>

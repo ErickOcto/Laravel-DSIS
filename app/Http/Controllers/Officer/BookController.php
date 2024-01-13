@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Officer;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookCategory;
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -125,7 +126,13 @@ class BookController extends Controller
      */
     public function delete(string $id)
     {
-        Book::find($id)->delete();
+        $book = Book::find($id);
+
+        $borrow = Borrow::where('book_id', $book->id)->get();
+        if(!$borrow){
+            return redirect()->back()->with(['error' => "Buku ini memiliki beberapa histori peminjaman"]);
+        }
+        $book->delete();
         return redirect()->back()->with([
             'success' => "Berhasil menghapus data buku"
         ]);
