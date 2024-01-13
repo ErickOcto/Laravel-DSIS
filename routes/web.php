@@ -103,6 +103,10 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     //Borrow routes
     Route::get('borrow', [BorrowController::class, 'index'])->name('borrow.index');
     Route::get('borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
+    Route::put('borrow/return/{id}', [BorrowController::class, 'returnBook'])->name('borrow.return');
+
+    //users search routes
+    Route::get('borrow/users-search', [BorrowController::class, 'userSearch'])->name('borrow.userSearch');
 });
 
 Route::middleware('auth')->group(function () {

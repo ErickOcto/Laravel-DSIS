@@ -8,6 +8,7 @@ use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
@@ -75,17 +76,19 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $book = Book::findOrFail($id);
         $validators = Validator::make($request->all(), [
             'title' => 'required',
-            'book_code' => 'required|unique:books,book_code',
+            'book_code' => [
+                'required',
+                Rule::unique('books', 'book_code')->ignore($book->id),
+            ],
             'year' => 'required',
         ]);
 
         if($validators->fails()){
-            return redirect()->back();
+            return redirect()->back()->with(['error' => "Ada yang salah nih!"]);
         }
-
-        $book = Book::findOrFail($id);
 
         if($request->hasFile('image')){
 

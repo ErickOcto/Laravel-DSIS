@@ -9,7 +9,7 @@ Petugas - Manajemen Peminjaman
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ">
                 <h5 class="card-title">
-                    Daftar Kategori Buku
+                    Daftar Peminjaman
                 </h5>
                 <a href="{{ route('officer.borrow.create') }}" class="btn btn-primary">Tambah Data Peminajaman</a>
             </div>
@@ -17,31 +17,30 @@ Petugas - Manajemen Peminjaman
                 <table class="table table-striped table-hover" id="table1">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Kategori</th>
-                            <th>Pengarang</th>
+                            <th>Nama Siswa</th>
+                            <th>NIS</th>
+                            <th>Judul Buku</th>
                             <th>Kode Buku</th>
-                            <th>Stok</th>
-                            <th>Tahun Buku</th>
-                            <th>Jumlah Dipinjam</th>
+                            <th>Tanggal Pinjam</th>
+                            <th>Tanggal Kembali</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($borrows as $borrow)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $borrow->title }}</td>
-                            <td>{{ $borrow->BookCategory->name ?? "Tidak Memiliki Kategori" }}</td>
-                            <td>{{ $borrow->author ?? "Tidak Memiliki Penulis" }}</td>
-                            <td>{{ $borrow->book_code }}</td>
-                            <td>{{ $borrow->stock }}</td>
-                            <td>{{ $borrow->year }}</td>
-                            <td>{{ $borrow->view }}</td>
+                            <td>{{ $borrow->users->pluck('name')->implode(', ') }}</td>
+                            <td>{{ $borrow->users->pluck('nis')->implode(', ') }}</td>
+                            <td>{{ $borrow->books->pluck('title')->implode(', ') }}</td>
+                            <td>{{ $borrow->books->pluck('book_code')->implode(', ') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($borrow->borrow_date)->format('d F Y') }}</td>
+                            <td>{{ $borrow->return_date ?? "Belum dikembalikan"}}</td>
                             <td>
-                                <a href="{{ route('officer.borrow.edit', $borrow->id) }}" class="btn btn-warning">Edit</a>
-                                <a onclick="confirmDelete({{ $borrow->id }})" class="btn btn-danger">Hapus</a>
+                                @if($borrow->return_date)
+                                <a href="#" class="btn btn-info disabled">Sudah Dikembalikan</a>
+                                @else
+                                <a onclick="confirmUpdate({{ $borrow->id }})" class="btn btn-info">Kembalikan Buku</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -54,10 +53,10 @@ Petugas - Manajemen Peminjaman
 
 @push('add-script')
 <script>
-    function confirmDelete(kategoriId) {
+    function confirmUpdate(kategoriId) {
         Swal.fire({
-            title: 'Konfirmasi Hapus Kategori',
-            text: 'Apakah Anda yakin ingin menghapus Kategori Buku ini?',
+            title: 'Konfirmasi Pengembalian Buku',
+            text: 'Apakah Anda yakin ingin mengembalikan Buku ini?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -66,8 +65,8 @@ Petugas - Manajemen Peminjaman
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/officer/books/delete/${kategoriId}`,
-                    type: "DELETE",
+                    url: `/officer/borrow/return/${kategoriId}`,
+                    type: "PUT",
                     data: {
                         "_token": "{{ csrf_token() }}"
                     },
