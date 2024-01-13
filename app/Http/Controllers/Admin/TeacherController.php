@@ -104,7 +104,8 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.teacher.edit', compact('user'));
     }
 
     /**
@@ -112,7 +113,22 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $teacher = User::findOrFail($id);
+
+        if($request->has('password')){
+            $pass = $request->password;
+        }else{
+            $pass = $teacher->password;
+        }
+        $teacher->update([
+            'password' => $pass,
+            'name' => $request->name,
+            'email' => $request->email,
+            'bio' => $request->bio,
+            'major_id' => $request->major_id,
+        ]);
+
+        return redirect()->route('admin.teacher.index')->with(['success' => "Data guru berhasil diubah"]);
     }
 
     /**
