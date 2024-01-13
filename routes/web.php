@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\MajorController;
+use App\Http\Controllers\Admin\OfficerController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\HomeController;
@@ -84,6 +86,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
     Route::post('teacher/addsub', [TeacherController::class, 'addsub'])->name('teacher.addsub');
     Route::delete('teacher/delsub/{id}', [TeacherController::class, 'delsub'])->name('teacher.delsub');
 
+    //Admin Officer Management Routes
+    Route::resource('officer', OfficerController::class);
+
+    //Admin Classroom Management Routes
+    Route::resource('classroom', ClassroomController::class);
 });
 
 //Backend routes for teacher

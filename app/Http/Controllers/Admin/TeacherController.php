@@ -114,23 +114,23 @@ class TeacherController extends Controller
     public function update(Request $request, string $id)
     {
         $teacher = User::findOrFail($id);
-
-        if($request->has('password')){
-            $pass = $request->password;
-        }else{
-            $pass = $teacher->password;
-        }
-        $teacher->update([
-            'password' => $pass,
+    
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
             'bio' => $request->bio,
             'major_id' => $request->major_id,
-        ]);
-
+        ];
+    
+        if ($request->filled('password')) {
+            // Jika password diisi, tambahkan ke data pembaruan
+            $updateData['password'] = bcrypt($request->password);
+        }
+    
+        $teacher->update($updateData);
+    
         return redirect()->route('admin.teacher.index')->with(['success' => "Data guru berhasil diubah"]);
     }
-
     /**
      * Remove the specified resource from storage.
      */
