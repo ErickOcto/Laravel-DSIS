@@ -87,14 +87,13 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
 
-        $image = $request->file('image');
-        $image->storeAs('public/books', $image->hashName());
+        if($request->hasFile('image')){
 
-        Storage::delete('public/books'.$book->image);
+            $image = $request->file('image');
+            $image->storeAs('public/books', $image->hashName());
 
-        if($request->hasFile('images')){
+            Storage::delete('public/books/'.$book->image);
 
-            $image =
             $book->update([
                 'title' => $request->title,
                 'year' => $request->year,
@@ -104,9 +103,18 @@ class BookController extends Controller
                 'book_code' => $request->book_code,
                 'stock' => $request->stock
             ]);
+        }else{
+            $book->update([
+                'title' => $request->title,
+                'year' => $request->year,
+                'book_category_id' => $request->book_category_id,
+                'author' => $request->author,
+                'book_code' => $request->book_code,
+                'stock' => $request->stock
+            ]);
         }
 
-        return redirect()->route('officer.book.index');
+        return redirect()->route('officer.books.index');
     }
 
     /**

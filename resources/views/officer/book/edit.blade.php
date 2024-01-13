@@ -114,7 +114,7 @@ Manajemen Buku - Edit Data
                             <div class="col-4">
                                 <div class="form-group">
                                     <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-upload"></i></label>
-                                    <input type="file" class="form-control" name="image" accept=".png, .jpg" id="inputGroupFile01" required>
+                                    <input type="file" class="form-control" name="image" accept=".png, .jpg" id="inputGroupFile01">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ Manajemen Buku - Edit Data
                                 <a href="{{ route('officer.books.index') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                             <div class="col-6 d-grid">
-                                <button type="submit" class="btn btn-primary">Tambahkan</button>
+                                <button type="submit" class="btn btn-primary">Perbarui</button>
                             </div>
                         </div>
                     </div>
