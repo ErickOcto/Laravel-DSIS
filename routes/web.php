@@ -104,6 +104,7 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     Route::get('borrow', [BorrowController::class, 'index'])->name('borrow.index');
     Route::get('borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
     Route::put('borrow/return/{id}', [BorrowController::class, 'returnBook'])->name('borrow.return');
+    Route::post('borrow/store', [BorrowController::class, 'post'])->name('borrow.store');
 
     //users search routes
     Route::get('borrow/users-search', [BorrowController::class, 'userSearch'])->name('borrow.userSearch');

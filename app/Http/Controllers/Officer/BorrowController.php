@@ -8,11 +8,18 @@ use App\Models\Borrow;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class BorrowController extends Controller
 {
     public function index(Request $request){
-        $borrows = Borrow::with('users', 'books')->get();
+        // $borrows = Borrow::with('users', 'books')->get();
+        $borrows = DB::table('borrows')
+        ->join('users', 'borrows.user_id', '=', 'users.id')
+        ->join('books', 'borrows.book_id', '=', 'books.id')
+        ->select('users.name as name', 'books.title as title', 'books.book_code as book_code', 'users.nis as nis', 'borrows.borrow_date as borrow_date', 'borrows.return_date as return_date', 'borrows.id as id')
+        ->get();
 
         //dd($borrows);
         return view('officer.borrow.index', compact('borrows'));
@@ -20,6 +27,25 @@ class BorrowController extends Controller
 
     public function create(){
         return view('officer.borrow.create-search');
+    }
+
+    public function post(Request $request){
+        $validators = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'book_id' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back()->with(['error' => 'Ups! Sepertinya ada yang salah']);
+        }
+
+        Borrow::create([
+            'user_id' => $request->user_id,
+            'book_id' => $request->book_id,
+            'borrow_date' => Carbon::now(),
+        ]);
+
+        return redirect()->route('officer.borrow.index')->with(['success' => "Berhasil memproses peminjaman"]);
     }
 
     public function returnBook($id){
@@ -36,8 +62,8 @@ class BorrowController extends Controller
         $query = $request->input('query');
         $bookQuery = $request->input('book');
 
-        $users = User::where('nis', $query)->where('is_admin', 2)
-        ->orWhere('email', $query)
+        $users = User::where('nis', $query)->where('is_admin', '=', 2)
+        ->orWhere('email', $query)->where('is_admin', '=', 2)
         ->first();
 
         // if($users->is_admin !== 2){

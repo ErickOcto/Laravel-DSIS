@@ -29,10 +29,10 @@ Petugas - Manajemen Peminjaman
                     <tbody>
                         @foreach ($borrows as $borrow)
                         <tr>
-                            <td>{{ $borrow->users->pluck('name')->implode(', ') }}</td>
-                            <td>{{ $borrow->users->pluck('nis')->implode(', ') }}</td>
-                            <td>{{ $borrow->books->pluck('title')->implode(', ') }}</td>
-                            <td>{{ $borrow->books->pluck('book_code')->implode(', ') }}</td>
+                            <td>{{ $borrow->name }}</td>
+                            <td>{{ $borrow->nis }}</td>
+                            <td>{{ $borrow->title }}</td>
+                            <td>{{ $borrow->book_code }}</td>
                             <td>{{ \Carbon\Carbon::parse($borrow->borrow_date)->format('d F Y') }}</td>
                             <td>{{ $borrow->return_date ?? "Belum dikembalikan"}}</td>
                             <td>
@@ -61,7 +61,7 @@ Petugas - Manajemen Peminjaman
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!'
+            confirmButtonText: 'Ya, Kembalikan!'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({

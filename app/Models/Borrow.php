@@ -13,12 +13,12 @@ class Borrow extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'borrows', 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'borrows', 'book_id');
+        return $this->belongsTo(Book::class);
     }
 
 }

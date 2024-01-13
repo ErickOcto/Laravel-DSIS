@@ -11,7 +11,7 @@ Petugas - Manajemen Peminjaman
 
                 <div class="form-group">
                   <label for="judul-column" class="form-label"
-                    >NIS atau Nama Siswa</label
+                    >NIS atau Email Siswa</label
                   >
                   <div class="row">
                     <div class="col-5">

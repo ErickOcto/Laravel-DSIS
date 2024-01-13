@@ -43,6 +43,7 @@ Petugas - Manajemen Peminjaman
                 </div>
             </form>
         </div>
+
 <div class="row">
     <div class="col-6">
         <div class="card">
@@ -138,6 +139,17 @@ Petugas - Manajemen Peminjaman
     </div>
 </div>
 
+@if($users && $books)
+<form action="{{ route('officer.borrow.store') }}" method="post">
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $users->id }}">
+    <input type="hidden" name="book_id" value="{{ $books->id }}">
+<div class="d-flex align-items-center justify-content-end">
+<a href="{{ route('officer.borrow.index') }}" class="btn btn-secondary me-2">Kembali</a>
+<button type=" submit" class="btn btn-primary">Konfirmasi Peminjaman</button>
+</div>
+</form>
+@endif
 
     </section>
 @endsection
