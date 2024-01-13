@@ -101,7 +101,8 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     Route::delete('books/delete/{id}', [BookController::class, 'delete']);
 
     //Borrow routes
-    Route::get('borrow', [BorrowController::class, 'index']);
+    Route::get('borrow', [BorrowController::class, 'index'])->name('borrow.index');
+    Route::get('borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
 });
 
 Route::middleware('auth')->group(function () {

@@ -28,6 +28,14 @@
                 </a>
             </li>
 
+            <li
+                class="sidebar-item {{ request()->is('officer/borrow*') ? 'active' : '' }}">
+                <a href="{{ route('officer.borrow.index') }}" class='sidebar-link'>
+                    <i class="bi bi-book-fill"></i>
+                    <span>Peminjaman</span>
+                </a>
+            </li>
+
             <li class="sidebar-title">Akun</li>
 
             <li
