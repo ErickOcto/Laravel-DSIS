@@ -1,7 +1,7 @@
 @extends('layouts.officer')
 
 @section('officer-header')
-Officer - Book Category
+Petugas - Book Category
 @endsection
 
 @section('officer-content')

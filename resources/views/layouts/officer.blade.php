@@ -93,7 +93,8 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
 <div class="page-heading">
     <div class="d-flex align-items-center justify-content-between">
     <h3>@yield('officer-header')</h3>
@@ -115,6 +116,7 @@
         </li>
     </div>
 </div>
+</form>
 <div class="page-content">
 @yield('officer-content')
 </div>

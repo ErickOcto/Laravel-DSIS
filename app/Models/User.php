@@ -26,6 +26,7 @@ class User extends Authenticatable
         'major_id',
         'bio',
         'classroom_id',
+        'nis'
     ];
 
     /**
