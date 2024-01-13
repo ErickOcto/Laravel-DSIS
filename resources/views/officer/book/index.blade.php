@@ -40,6 +40,7 @@ Petugas - Manajemen Buku
                             <td>{{ $book->year }}</td>
                             <td>{{ $book->view }}</td>
                             <td>
+                                <a href="{{ route('officer.books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
                                 <a onclick="confirmDelete({{ $book->id }})" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>

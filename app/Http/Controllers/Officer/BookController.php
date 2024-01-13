@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
@@ -32,7 +34,30 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validators = Validator::make($request->all(), [
+            'title' => 'required',
+            'book_code' => 'required|unique:books,book_code',
+            'year' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        $image = $request->file('image');
+        $image->storeAs('public/books', $image->hashName());
+
+        Book::create([
+            'title' => $request->title,
+            'year' => $request->year,
+            'image' => $image->hashName(),
+            'book_category_id' => $request->book_category_id,
+            'author' => $request->author,
+            'book_code' => $request->book_code,
+            'stock' => $request->stock
+        ]);
+
+        return redirect()->route('officer.books.index');
     }
 
     /**
@@ -40,7 +65,9 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $categories = BookCategory::all();
+        return view('officer.book.edit', compact('categories', 'book'));
     }
 
     /**
@@ -48,7 +75,38 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validators = Validator::make($request->all(), [
+            'title' => 'required',
+            'book_code' => 'required|unique:books,book_code',
+            'year' => 'required',
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back();
+        }
+
+        $book = Book::findOrFail($id);
+
+        $image = $request->file('image');
+        $image->storeAs('public/books', $image->hashName());
+
+        Storage::delete('public/books'.$book->image);
+
+        if($request->hasFile('images')){
+
+            $image =
+            $book->update([
+                'title' => $request->title,
+                'year' => $request->year,
+                'image' => $image->hashName(),
+                'book_category_id' => $request->book_category_id,
+                'author' => $request->author,
+                'book_code' => $request->book_code,
+                'stock' => $request->stock
+            ]);
+        }
+
+        return redirect()->route('officer.book.index');
     }
 
     /**

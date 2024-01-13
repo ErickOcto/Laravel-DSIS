@@ -9,6 +9,8 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * Get the Category that owns the Book
      *

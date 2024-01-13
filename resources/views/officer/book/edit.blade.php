@@ -1,15 +1,16 @@
 @extends('layouts.officer')
 
 @section('officer-header')
-Manajemen Buku - Tambah Data
+Manajemen Buku - Edit Data
 @endsection
 
 @section('officer-content')
     <section class="section">
         <div class="row">
             <div class="col-12">
-                <form class="card" action="{{ route('officer.books.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="card" action="{{ route('officer.books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card-header">
                         <h4 class="card-title">Form tambah Buku</h4>
                     </div>
@@ -27,6 +28,7 @@ Manajemen Buku - Tambah Data
                                     name="title"
                                     placeholder="Masukkan Judul Buku"
                                     data-parsley-required="true"
+                                    value="{{ old('title', $book->title) }}"
                                   />
                                 </div>
                             </div>
@@ -37,9 +39,8 @@ Manajemen Buku - Tambah Data
                                   >
                                     <fieldset class="form-group">
                                         <select class="form-select" name="book_category_id" id="kategori-column" required>
-                                            <option value="" disabled>Pilih Kategori Buku</option>
                                             @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ $category->id === $book->book_category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </fieldset>
@@ -57,6 +58,7 @@ Manajemen Buku - Tambah Data
                                     name="book_code"
                                     placeholder="Masukkan Kode Buku"
                                     data-parsley-required="true"
+                                    value="{{ old('book_code', $book->book_code) }}"
                                   />
                                 </div>
                             </div>
@@ -72,6 +74,7 @@ Manajemen Buku - Tambah Data
                                     name="author"
                                     placeholder="Masukkan Nama Pengarang"
                                     data-parsley-required="true"
+                                    value="{{ old('author', $book->author) }}"
                                   />
                                 </div>
                             </div>
@@ -88,6 +91,7 @@ Manajemen Buku - Tambah Data
                                     placeholder="Masukkan Stock Buku"
                                     min="1"
                                     data-parsley-required="true"
+                                    value="{{ old('stock', $book->stock) }}"
                                   />
                                 </div>
                             </div>
@@ -103,6 +107,7 @@ Manajemen Buku - Tambah Data
                                     name="year"
                                     placeholder="Masukkan Judul Buku"
                                     data-parsley-required="true"
+                                    value="{{ old('year', $book->year) }}"
                                   />
                                 </div>
                             </div>
@@ -111,9 +116,6 @@ Manajemen Buku - Tambah Data
                                     <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-upload"></i></label>
                                     <input type="file" class="form-control" name="image" accept=".png, .jpg" id="inputGroupFile01" required>
                                 </div>
-                                <div class="input-group mb-3">
-
-                                 </div>
                             </div>
                         </div>
                     </div>
