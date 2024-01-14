@@ -92,6 +92,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 
     //Admin Classroom Management Routes
     Route::resource('classroom', ClassroomController::class);
+    Route::delete('classroom/delete/{id}', [ClassroomController::class, 'delete']);
+    Route::delete('classroom/delete-user/{id}', [ClassroomController::class, 'deleteUser']);
+
 });
 
 //Backend routes for teacher
