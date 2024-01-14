@@ -14,7 +14,7 @@ use App\Http\Controllers\Officer\BorrowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Teacher\DashboardController;
 use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
-use App\Models\BookCategory;
+use App\Http\Controllers\Teacher\AssessmentController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -99,7 +99,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 
 //Backend routes for teacher
 Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'makeSureRole:teacher'])->group(function(){
+    //Route for teacher dashboard
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    //Route for assessment
+    Route::resource('assessment', AssessmentController::class);
 });
 
 //Backend routes for officer

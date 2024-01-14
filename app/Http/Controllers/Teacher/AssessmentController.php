@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EvaluationController extends Controller
+class AssessmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('teacher.assessment.index');
     }
 
     /**
