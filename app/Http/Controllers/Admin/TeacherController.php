@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\TeachersSubject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -75,12 +76,13 @@ class TeacherController extends Controller
         $teacher = User::findOrFail($id);
         $classes = Classroom::all();
         $subjects = Subject::all();
-        $users = DB::table('teachers_subjects')
+        $users = DB::table('teachers_subjects')->where('teachers_subjects.user_id', '=', $teacher->id)
                 ->join('users', 'teachers_subjects.user_id', '=', 'users.id')
                 ->join('subjects', 'teachers_subjects.subject_id', '=', 'subjects.id')
                 ->join('classrooms', 'teachers_subjects.classroom_id', '=', 'classrooms.id')
                 ->select('classrooms.name as classroom_name', 'subjects.name as subject_name', 'teachers_subjects.id as id')
                 ->get();
+
         return view('admin.teacher.detail', compact('teacher', 'classes', 'subjects', 'users'));
     }
 

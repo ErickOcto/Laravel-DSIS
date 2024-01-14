@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('teacher_subject_id');
             $table->integer('value');
+            $table->boolean('status');
             $table->date('assessment_date');
             $table->timestamps();
         });

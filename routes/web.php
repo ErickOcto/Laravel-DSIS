@@ -104,6 +104,8 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'mak
 
     //Route for assessment
     Route::resource('assessment', AssessmentController::class);
+    Route::get('assessment/create/{id}', [AssessmentController::class, 'createAss'])->name('create.assessment');
+    Route::delete('assessment/delete/{id}', [AssessmentController::class, 'delete'])->name('delete.assessment');
 });
 
 //Backend routes for officer
