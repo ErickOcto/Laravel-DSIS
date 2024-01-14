@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\OfficerController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Officer\BookCategoryController;
@@ -96,6 +97,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
     Route::resource('classroom', ClassroomController::class);
     Route::delete('classroom/delete/{id}', [ClassroomController::class, 'delete']);
     Route::delete('classroom/delete-user/{id}', [ClassroomController::class, 'deleteUser']);
+
+    //Admin Subject Management Routes
+    Route::resource('subject', SubjectController::class);
+    Route::delete('subject/delete/{id}', [SubjectController::class, 'delete'])->name('delete.subject');
 
 });
 

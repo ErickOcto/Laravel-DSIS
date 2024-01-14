@@ -72,6 +72,14 @@
                 </a>
             </li>
 
+            <li
+                class="sidebar-item {{ request()->is('admin/subject*') ? 'active' : '' }}">
+                <a href="{{ route('admin.subject.index') }}" class='sidebar-link'>
+                    <i class="bi bi-subtract"></i>
+                    <span>Daftar Mata Pelajaran</span>
+                </a>
+            </li>
+
             <li class="sidebar-title">Akun</li>
 
             <li
