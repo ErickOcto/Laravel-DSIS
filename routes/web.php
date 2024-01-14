@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\OfficerController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Officer\BookCategoryController;
 use App\Http\Controllers\Officer\BookController;
@@ -101,6 +103,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
     //Admin Subject Management Routes
     Route::resource('subject', SubjectController::class);
     Route::delete('subject/delete/{id}', [SubjectController::class, 'delete'])->name('delete.subject');
+
+    //Admin Gallery Management Routes
+    Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.index');
+
+
+    //Admin Help Routes
+    Route::get('help', [HelpController::class, 'index'])->name('help.index');
 
 });
 

@@ -75,8 +75,24 @@
             <li
                 class="sidebar-item {{ request()->is('admin/subject*') ? 'active' : '' }}">
                 <a href="{{ route('admin.subject.index') }}" class='sidebar-link'>
-                    <i class="bi bi-subtract"></i>
+                    <i class="bi bi-list-task"></i>
                     <span>Daftar Mata Pelajaran</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item {{ request()->is('admin/gallery*') ? 'active' : '' }}">
+                <a href="{{ route('admin.gallery.index') }}" class='sidebar-link'>
+                   <i class="bi bi-image-fill"></i>
+                    <span>Daftar Gallery</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item {{ request()->is('admin/help*') ? 'active' : '' }}">
+                <a href="{{ route('admin.help.index') }}" class='sidebar-link'>
+                    <i class="bi bi-question-circle-fill"></i>
+                    <span>Daftar QnA</span>
                 </a>
             </li>
 
