@@ -69,7 +69,8 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.officer.edit', compact('user'));
     }
 
     /**
@@ -77,7 +78,40 @@ class OfficerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $image->storeAs('public/users', $image->hashName());
+
+            Storage::delete('public/users' . $user->image);
+
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'image' => $image->hashName(),
+            ];
+
+            if ($request->filled('password')) {
+                // Jika password diisi, tambahkan ke data pembaruan
+                $updateData['password'] = bcrypt($request->password);
+            }
+
+            $user->update($updateData);
+        }else{
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+            ];
+
+            if ($request->filled('password')) {
+                // Jika password diisi, tambahkan ke data pembaruan
+                $updateData['password'] = bcrypt($request->password);
+            }
+
+            $user->update($updateData);
+        }
+        return redirect()->route('admin.officer.index')->with(['success'=> "Perubahan berhasil disimpan"]);
     }
 
     /**

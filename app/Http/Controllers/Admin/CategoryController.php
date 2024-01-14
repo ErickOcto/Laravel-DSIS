@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,17 +54,8 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('admin.category.index')->with([
-            'type' => 'success',
-            'message' => 'Sukses menambahkan kategori'
+            'success' => 'Sukses menambahkan kategori'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -95,7 +87,7 @@ class CategoryController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with(['success' => "Kategori berhasil diubah"]);
 
     }
 
@@ -104,9 +96,15 @@ class CategoryController extends Controller
      */
     public function delete(string $id)
     {
-        Category::find($id)->delete();
+        $blog = Blog::where('category_id', $id)->first();
 
-        return redirect()->back();
+        if($blog != null){
+            return redirect()->back()->with(['error' => "Kategori sudah memiliki beberapa blog"]);
+        }
+
+        Category::findOrFail($id)->delete();
+
+        return redirect()->back()->with(['success' => "Kategori berhasil dihapus"]);
     }
 }
 
