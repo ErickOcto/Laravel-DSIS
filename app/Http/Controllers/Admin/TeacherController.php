@@ -10,6 +10,7 @@ use App\Models\TeachersSubject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
@@ -114,21 +115,43 @@ class TeacherController extends Controller
     public function update(Request $request, string $id)
     {
         $teacher = User::findOrFail($id);
-    
-        $updateData = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'bio' => $request->bio,
-            'major_id' => $request->major_id,
-        ];
-    
-        if ($request->filled('password')) {
-            // Jika password diisi, tambahkan ke data pembaruan
-            $updateData['password'] = bcrypt($request->password);
+
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $image->storeAs('public/users', $image->hashName());
+
+            Storage::delete('public/users' . $teacher->image);
+
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'bio' => $request->bio,
+                'image' => $image->hashName(),
+                'major_id' => $request->major_id,
+            ];
+
+            if ($request->filled('password')) {
+                // Jika password diisi, tambahkan ke data pembaruan
+                $updateData['password'] = bcrypt($request->password);
+            }
+
+            $teacher->update($updateData);
+        }else{
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'bio' => $request->bio,
+                'major_id' => $request->major_id,
+            ];
+        
+            if ($request->filled('password')) {
+                // Jika password diisi, tambahkan ke data pembaruan
+                $updateData['password'] = bcrypt($request->password);
+            }
+        
+            $teacher->update($updateData);
         }
-    
-        $teacher->update($updateData);
-    
+
         return redirect()->route('admin.teacher.index')->with(['success' => "Data guru berhasil diubah"]);
     }
     /**

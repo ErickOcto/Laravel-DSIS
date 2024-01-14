@@ -88,6 +88,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 
     //Admin Officer Management Routes
     Route::resource('officer', OfficerController::class);
+    Route::delete('officer/delete/{id}', [OfficerController::class, 'delete']);
 
     //Admin Classroom Management Routes
     Route::resource('classroom', ClassroomController::class);

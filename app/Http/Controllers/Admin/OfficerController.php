@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OfficerController extends Controller
@@ -12,7 +13,8 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        return view('admin.officer.index');
+        $users = User::where('is_admin', 3)->get();
+        return view('admin.officer.index', compact('users'));
     }
 
     /**
@@ -20,7 +22,7 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.officer.create');
     }
 
     /**
@@ -58,8 +60,9 @@ class OfficerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->back()->with(['success' => "Data petugas berhasil dihapus"]);
     }
 }
