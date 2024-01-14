@@ -56,8 +56,7 @@ class MajorController extends Controller
         ]);
 
         return redirect()->route('admin.majors.index')->with([
-            'type' => 'success',
-            'message' => 'successfully created'
+            'success' => "Jurusan berhasil ditambahkan"
         ]);
     }
 
@@ -108,7 +107,7 @@ class MajorController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.majors.index');
+        return redirect()->route('admin.majors.index')->with(['success' => "Berhasil mengubah data jurusan"]);
     }
 
     /**
@@ -116,7 +115,9 @@ class MajorController extends Controller
      */
     public function delete(string $id)
     {
-        Major::find($id)->delete();
+        $major = Major::findOrFail($id);
+        Storage::delete('public/majors/' . $major->photo);
+        $major->delete();
         return redirect()->back();
     }
 
@@ -125,6 +126,9 @@ class MajorController extends Controller
         $major->update([
             'status' => $request->status
         ]);
-        return redirect()->back();
+        if($request->status == 1){
+            return redirect()->back()->with(['success' => "Jurusan berhasil ditampilkan ke halaman landing"]);
+        }
+        return redirect()->back()->with(['success' => "Jurusan berhasil disembunyikan"]);
     }
 }

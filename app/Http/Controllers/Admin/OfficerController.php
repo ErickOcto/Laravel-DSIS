@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class OfficerController extends Controller
 {
@@ -30,7 +32,28 @@ class OfficerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validators = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users,email|email',
+            'password' => 'required|min:8'
+        ]);
+
+        if($validators->fails()){
+            return redirect()->back()->with(['error' => "Ups! ada yang salah"]);
+        }
+
+        $image = $request->file('photo');
+        $image->storeAs('public/users', $image->hashName());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'is_admin' => 3,
+            'image' => $image->hashName(),
+        ]);
+
+        return redirect()->back()->with(['success' => "Data berhasil ditambahkan"]);
     }
 
     /**
@@ -62,7 +85,9 @@ class OfficerController extends Controller
      */
     public function delete(string $id)
     {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        Storage::delete('public/users/' . $user->image);
+        $user->delete();
         return redirect()->back()->with(['success' => "Data petugas berhasil dihapus"]);
     }
 }

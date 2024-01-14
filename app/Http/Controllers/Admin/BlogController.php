@@ -65,17 +65,8 @@ class BlogController extends Controller
         ]);
 
         return redirect()->route('admin.blog.index')->with([
-            'type' => 'success',
-            'message' => "Sukses Menambahkan blog"
+            'success' => "Sukses Menambahkan blog"
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -104,8 +95,7 @@ class BlogController extends Controller
 
         if($validators->fails()){
             return redirect()->back()->with([
-                'type' => 'error',
-                'message' => "Gagal menyimpan"
+                'error' => "Gagal menyimpan"
             ]);
         }
 
@@ -136,8 +126,7 @@ class BlogController extends Controller
         }
 
         return redirect()->route('admin.blog.index')->with([
-            'type' => 'success',
-            'message' => "Sukses menyimpan perubahan"
+            'success' => "Berhasil menyimpan perubahan"
         ]);
     }
 
@@ -146,11 +135,12 @@ class BlogController extends Controller
      */
     public function delete(string $id)
     {
-        Blog::findOrFail($id)->delete();
+        $blog = Blog::findOrFail($id);
+        Storage::delete('public/blogs/', $blog->photo);
+        $blog->delete();
 
         return redirect()->back()->with([
-            'type' => 'success',
-            'message' => "Sukses Menghapus Blog"
+            'success' => "Blog berhasil dihapus"
         ]);
     }
 
@@ -160,6 +150,6 @@ class BlogController extends Controller
             'carousel' => $request->carousel,
         ]);
 
-        return redirect(route('admin.blog.index'));
+        return redirect(route('admin.blog.index'))->with(['success' => "Berhasil menambahkan blog ke carousel"]);
     }
 }

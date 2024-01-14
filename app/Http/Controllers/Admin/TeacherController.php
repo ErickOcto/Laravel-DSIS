@@ -64,7 +64,7 @@ class TeacherController extends Controller
             'major_id' => $request->major_id,
         ]);
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.teacher.index')->with(['success' => "Data guru berhasil ditambahkan"]);
     }
 
     /**
@@ -143,12 +143,12 @@ class TeacherController extends Controller
                 'bio' => $request->bio,
                 'major_id' => $request->major_id,
             ];
-        
+
             if ($request->filled('password')) {
                 // Jika password diisi, tambahkan ke data pembaruan
                 $updateData['password'] = bcrypt($request->password);
             }
-        
+
             $teacher->update($updateData);
         }
 
@@ -159,7 +159,14 @@ class TeacherController extends Controller
      */
     public function delete(string $id)
     {
-        User::findOrFail($id)->delete();
+        $check = DB::table('teachers_subjects')->where('user_id', $id)->first();
+        //dd($check);
+        if($check !== null){
+            return redirect()->back()->with(['error' => "Guru ini memiliki beberapa mapel dan kelas yang diajar", ]);
+        }
+        $user = User::findOrFail($id);
+        Storage::delete('public/users/' . $user->image);
+        $user->delete();
         return redirect()->back()->with(['success' => "Data guru berhasil dihapus"]);
     }
 

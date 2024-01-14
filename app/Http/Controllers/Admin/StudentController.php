@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -57,8 +58,7 @@ class StudentController extends Controller
 
         if($validators->fails()){
             return redirect()->back()->with([
-                'type' => 'success',
-                'message' => 'Sorry, Something went wrong',
+                'error' => 'Gagal menambahkan siswa',
             ]);
         }
 
@@ -76,7 +76,7 @@ class StudentController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.user.index'))->with(['success' => "Siswa berhasil dibuat"]);
     }
 
     /**
@@ -108,7 +108,9 @@ class StudentController extends Controller
      */
     public function delete(string $id)
     {
-        User::findOrFail($id)->delete();
-        return redirect()->route('admin.user.index');
+        $user = User::findOrFail($id);
+        Storage::delete('public/users/' . $user->image);
+        $user->delete();
+        return redirect()->route('admin.user.index')->with(['success' => "Berhasil menghapus siswa"]);
     }
 }

@@ -97,7 +97,7 @@ Manajemen Siswa - Buat Siswa
                     <div class="card-footer">
                         <div class="w-full row gx-5 d-flex">
                             <div class="col-6 d-grid">
-                                <a href="{{ route('admin.majors.index') }}" class="btn btn-secondary">Kembali</a>
+                                <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                             <div class="col-6 d-grid">
                                 <button type="submit" class="btn btn-primary">Tambahkan</button>
