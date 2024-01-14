@@ -92,7 +92,9 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $classrooms = Classroom::all();
+        return view('admin.user.edit', compact('classrooms', 'user'));
     }
 
     /**
@@ -100,7 +102,48 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $classroom = Classroom::where('id', '=', $request->classroom_id)->first();
+
+        $major = Major::where('id', $classroom->major_id)->first();
+
+        $user = User::findOrFail($id);
+
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $image->storeAs('public/users', $image->hashName());
+
+            Storage::delete('public/users' . $user->image);
+
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'nis' => $request->nis,
+                'image' => $image->hashName(),
+                'classroom_id' => $request->classroom_id,
+                'major_id' => $major->id,
+            ];
+
+            if ($request->filled('password')) {
+                $updateData['password'] = bcrypt($request->password);
+            }
+
+            $user->update($updateData);
+        }else{
+            $updateData = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'nis' => $request->nis,
+                'classroom_id' => $request->classroom_id,
+                'major_id' => $major->id,
+            ];
+
+            if ($request->filled('password')) {
+                $updateData['password'] = bcrypt($request->password);
+            }
+
+            $user->update($updateData);
+        }
+            return redirect()->route('admin.user.index')->with([ 'success' => "Data siswa berhasil diubah" ]);
     }
 
     /**
@@ -111,6 +154,6 @@ class StudentController extends Controller
         $user = User::findOrFail($id);
         Storage::delete('public/users/' . $user->image);
         $user->delete();
-        return redirect()->route('admin.user.index')->with(['success' => "Berhasil menghapus siswa"]);
+        return redirect()->route('admin.user.index')->with(['success' => "Data siswa berhasil dihapus"]);
     }
 }
