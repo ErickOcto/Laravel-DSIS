@@ -575,6 +575,15 @@ line-height: normal;
     margin-bottom: 100px;
 }
 
+.py-100{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.pt-100{
+    padding-top: 100px;
+}
+
 .dropdown-item.active{
     background: var(--blue-3);
 }
