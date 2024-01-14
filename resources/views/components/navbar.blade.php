@@ -16,12 +16,9 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->is('profile/visi-misi') ? 'active' : '' }}" href="{{ route('profile.visi') }}">Visi & Misi</a></li>
-            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item {{ request()->is('profile/teachers*') ? 'active' : '' }}" href="{{ route('teachers') }}">Guru dan Tenaga Pendidikan</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item {{ request()->is('profile/facilities') ? 'active' : '' }}" href="{{ route('facilities') }}">Sarana & Prasarana</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Gallery Foto</a></li>
+            <li><a class="dropdown-item {{ request()->is('profile/facilities*') ? 'active' : '' }}" href="{{ route('facilities') }}">Sarana & Prasarana</a></li>
+            <li><a class="dropdown-item {{ request()->is('profile/gallery*') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery Foto</a></li>
           </ul>
         </li>
 

@@ -79,6 +79,8 @@ class HomeController extends Controller
         return view('landing.facilities.index');
     }
 
-
+    public function gallery(){
+        return view('landing.gallery.index');
+    }
 
 }
