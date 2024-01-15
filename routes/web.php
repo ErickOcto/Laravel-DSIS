@@ -106,7 +106,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 
     //Admin Gallery Management Routes
     Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.index');
-
+    Route::post('gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::put('gallery/update/{id}', [GalleryController::class, 'update'])->name('gallery.update');
+    Route::delete('gallery/delete/{id}', [GalleryController::class, 'delete'])->name('delete.gallery');
 
     //Admin Help Routes
     Route::get('help', [HelpController::class, 'index'])->name('help.index');

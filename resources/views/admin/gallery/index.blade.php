@@ -10,28 +10,13 @@ Manajemen Galeri
 
 @section('admin-content')
     <section class="section">
-        <form action="{{ route('admin.classroom.store') }}" method="POST" class="card">
+        <form action="{{ route('admin.gallery.store') }}" method="POST" class="card" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="row">
-                    <div class="col-5">
-                        <label for="" class="form-label">Nama Kelas</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                          <label for="kategori-column" class="form-label"
-                            >Jurusan</label
-                          >
-                            <fieldset class="form-group">
-                                <select class="form-select" name="major_id" id="kategori-column">
-                                    <option value="" disabled>Pilih Jurusan...</option>
-                                    @foreach ($majors as $major)
-                                    <option value="{{ $major->id }}">{{ $major->name }}</option>
-                                    @endforeach
-                                </select>
-                            </fieldset>
-                        </div>
+                    <div class="col-10">
+                        <label for="" class="form-label">Photo</label>
+                        <input type="file" name="image" class="form-control" required>
                     </div>
                     <div class="col-2 d-grid">
                         <button class="btn btn-primary">
@@ -44,7 +29,7 @@ Manajemen Galeri
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ">
                 <h5 class="card-title">
-                    Daftar Kelas
+                    Daftar Gambar
                 </h5>
             </div>
             <div class="card-body">
@@ -52,20 +37,34 @@ Manajemen Galeri
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kelas</th>
-                            <th>Jurusan</th>
+                            <th>Photo</th>
                             <th class="">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($class as $item)
+                        @foreach ($galleries as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->major->name }}</td>
                             <td>
+                                <img src="{{ asset('/storage/gallery/' . $item->image) }}" alt="{{ $item->image }}" style="width: 148px" class="rounded">
+                            </td>
+                            <td>
+                                @if($item->status === 0)
+                                    <form action="{{ route('admin.gallery.update', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="status" value="1">
+                                        <button class="btn btn-info" type="submit">Tampilkan</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('admin.gallery.update', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="status" value="0">
+                                        <button class="btn btn-light" type="submit">Sembunyikan</button>
+                                    </form>
+                                @endif
                                 <a onclick="confirmDelete({{ $item->id }})" class="btn btn-danger">Hapus</a>
-                                <a onclick="confirmDeleteUser({{ $item->id }})" class="btn btn-info">Hapus Kelas, Pengguna, Penilaian</a>
                             </td>
                         </tr>
                         @endforeach
@@ -91,7 +90,7 @@ Manajemen Galeri
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/admin/classroom/delete/${blogId}`,
+                    url: `/admin/gallery/delete/${blogId}`,
                     type: "DELETE",
                     data: {
                         "_token": "{{ csrf_token() }}"
@@ -101,34 +100,6 @@ Manajemen Galeri
                     },
                     error: function (response) {
                         location.reload();
-                    }
-                });
-            }
-        });
-    }
-
-    function confirmDeleteUser(blogId) {
-        Swal.fire({
-            title: 'Konfirmasi Hapus Kelas dan User',
-            text: 'Apakah Anda yakin ingin menghapus Kelas? Ini akan menghapus seluruh user yang bersangkutan dengan kelas ini dan juga penilaian dari guru',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: `/admin/classroom/delete-user/${blogId}`,
-                    type: "DELETE",
-                    data: {
-                        "_token": "{{ csrf_token() }}"
-                    },
-                    success: function (response) {
-                        location.reload();
-                    },
-                    error: function (response) {
-                        //location.reload();
                     }
                 });
             }
