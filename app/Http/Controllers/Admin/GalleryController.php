@@ -18,6 +18,6 @@ class GalleryController extends Controller
     }
 
     public function delete(){
-
+        return redirect()->back()->with(['success', "Data galeri berhasil dihapus"]);
     }
 }
