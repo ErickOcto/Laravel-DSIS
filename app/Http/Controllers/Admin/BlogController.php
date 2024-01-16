@@ -150,6 +150,10 @@ class BlogController extends Controller
             'carousel' => $request->carousel,
         ]);
 
+        if($request->carousel == 0){
+            return redirect()->route('admin.blog.index')->with(['success' => "Berhasil menyembunyikan blog dari carousel"]);
+        }
+
         return redirect(route('admin.blog.index'))->with(['success' => "Berhasil menambahkan blog ke carousel"]);
     }
 }

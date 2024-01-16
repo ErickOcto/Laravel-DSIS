@@ -95,7 +95,7 @@ Petugas - Book Category
                         location.reload();
                     },
                     error: function (response) {
-                        //location.reload();
+                        location.reload();
                     }
                 });
             }

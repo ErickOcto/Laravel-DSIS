@@ -128,7 +128,7 @@ Manajemen Kelas
                         location.reload();
                     },
                     error: function (response) {
-                        //location.reload();
+                        location.reload();
                     }
                 });
             }

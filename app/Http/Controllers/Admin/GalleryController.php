@@ -18,6 +18,7 @@ class GalleryController extends Controller
     public function store(Request $request){
         $validators = Validator::make($request->all(), [
             'image' => 'required',
+            'name' => 'required',
         ]);
 
         if($validators->fails()){
@@ -29,6 +30,7 @@ class GalleryController extends Controller
 
         Gallery::create([
             'image' => $image->hashName(),
+            'name' => $request->name,
             'status' => 0
         ]);
 

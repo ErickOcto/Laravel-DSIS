@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Classroom;
+use App\Models\Gallery;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -80,7 +81,8 @@ class HomeController extends Controller
     }
 
     public function gallery(){
-        return view('landing.gallery.index');
+        $galleries = Gallery::where('status', 1)->get();
+        return view('landing.gallery.index', compact('galleries'));
     }
 
 }

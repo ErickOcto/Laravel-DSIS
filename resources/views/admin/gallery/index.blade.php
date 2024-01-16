@@ -14,13 +14,17 @@ Manajemen Galeri
             @csrf
             <div class="card-body">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-7">
+                        <label for="" class="form-label">Nama</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="col-3">
                         <label for="" class="form-label">Photo</label>
                         <input type="file" name="image" class="form-control" required>
                     </div>
                     <div class="col-2 d-grid">
                         <button class="btn btn-primary">
-                            Tambahkan Kelas
+                            Tambahkan Galeri
                         </button>
                     </div>
                 </div>
@@ -38,6 +42,7 @@ Manajemen Galeri
                         <tr>
                             <th>No</th>
                             <th>Photo</th>
+                            <th>Nama</th>
                             <th class="">Aksi</th>
                         </tr>
                     </thead>
@@ -47,6 +52,9 @@ Manajemen Galeri
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <img src="{{ asset('/storage/gallery/' . $item->image) }}" alt="{{ $item->image }}" style="width: 148px" class="rounded">
+                            </td>
+                            <td>
+                                {{ $item->name }}
                             </td>
                             <td>
                                 @if($item->status === 0)
@@ -80,8 +88,8 @@ Manajemen Galeri
 <script>
     function confirmDelete(blogId) {
         Swal.fire({
-            title: 'Konfirmasi Hapus Kelas',
-            text: 'Apakah Anda yakin ingin menghapus Kelas?',
+            title: 'Konfirmasi Hapus Galeri',
+            text: 'Apakah Anda yakin ingin menghapus Galeri?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
