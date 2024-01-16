@@ -51,12 +51,16 @@ Route::get('/profile/visi-misi', function () {
 
 
 //Backend routes for students
-Route::middleware(['auth', 'verified', 'makeSureRole:student'])->group( function(){
+Route::middleware(['auth', 'verified', 'makeSureRole:student'])->prefix('student')->group( function(){
 
     //Student dashboard routes
-    Route::get('/dashboard', function () {
+    Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('assignments', function () {
+        return view('student.assignments');
+    });
 
     //Student book
 });
