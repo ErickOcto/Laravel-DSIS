@@ -65,6 +65,9 @@ Blog - {{ $blog->judul }}
                         <div class="copy">
                             Oleh : {{ $blog->User->name }}
                         </div>
+                        <div class="d-flex align-items-center mt-8">
+                            <i class="bi bi-eye me-2"></i><div class="copy">{{ $blog->lihat }} kali dilihat</div>
+                        </div>
                     </div>
                     <div class="divider"></div>
                     <button type="submit" style="border:0px;" class="footer-card">
