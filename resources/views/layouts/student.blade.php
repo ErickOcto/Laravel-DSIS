@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('teacher-header')</title>
+    <title>@yield('student-header')</title>
 
 
 
@@ -46,7 +46,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo me-1">
-                <a href="{{ route('teacher.dashboard') }}" class="d-flex align-items-center"><img src="/image/esemka6.png" alt="Logo" srcset="" class="me-1" style="min-height: 48px">SMK6</a>
+                <a href="{{ route('student.dashboard') }}" class="d-flex align-items-center"><img src="/image/esemka6.png" alt="Logo" srcset="" class="me-1" style="min-height: 48px">SMK6</a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -84,7 +84,7 @@
 {{-- @if(Auth::user->role == "admin")
 
 @endif --}}
-@include('components.sidebar-teacher')
+@include('components.sidebar-student')
 </div>
         </div>
         <div id="main">
@@ -97,7 +97,7 @@
     @csrf
 <div class="page-heading">
     <div class="d-flex align-items-center justify-content-between">
-    <h3>@yield('teacher-header')</h3>
+    <h3>@yield('student-header')</h3>
         <li class="nav-item mx-2 dropdown d-flex align-items-center" style="list-style: none">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Halo, {{ Str::of(Auth::user()->name)->explode(' ')[0] }}
@@ -118,7 +118,7 @@
 </div>
 </form>
 <div class="page-content">
-@yield('teacher-content')
+@yield('student-content')
 </div>
 
             <footer>

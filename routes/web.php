@@ -17,6 +17,9 @@ use App\Http\Controllers\Officer\BorrowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Teacher\DashboardController;
 use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
+use App\Http\Controllers\Student\BookController as StudentBookController;
+use App\Http\Controllers\Student\Dashboard;
+use App\Http\Controllers\Student\TestController;
 use App\Http\Controllers\Teacher\AssessmentController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -51,18 +54,14 @@ Route::get('/profile/visi-misi', function () {
 
 
 //Backend routes for students
-Route::middleware(['auth', 'verified', 'makeSureRole:student'])->prefix('student')->group( function(){
+Route::middleware(['auth', 'verified', 'makeSureRole:student'])->prefix('student')->name('student.')->group( function(){
 
     //Student dashboard routes
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
-    Route::get('assignments', function () {
-        return view('student.assignments');
-    });
+    Route::get('assessment', [TestController::class, 'index'])->name('assessment');
 
-    //Student book
+    Route::get('book', [StudentBookController::class, 'index'])->name('book');
 });
 
 // Backend routes for admin

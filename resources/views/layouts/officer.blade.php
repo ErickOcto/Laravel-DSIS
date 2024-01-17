@@ -46,7 +46,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo me-1">
-                <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center"><img src="/image/esemka6.png" alt="Logo" srcset="" class="me-1" style="min-height: 48px">SMK6</a>
+                <a href="{{ route('officer.dashboard') }}" class="d-flex align-items-center"><img src="/image/esemka6.png" alt="Logo" srcset="" class="me-1" style="min-height: 48px">SMK6</a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"

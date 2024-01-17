@@ -55,7 +55,7 @@
           </div>
           <ul class="dropdown-menu">
             @if(Auth::user()->is_admin === 2)
-            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard Ku</a></li>
+            <li><a class="dropdown-item" href="{{ route('student.dashboard') }}">Dashboard Ku</a></li>
             @elseif(Auth::user()->is_admin === 1)
             <li><a class="dropdown-item" href="{{ route('teacher.dashboard') }}">Dashboard Ku</a></li>
             @elseif(Auth::user()->is_admin === 0)
