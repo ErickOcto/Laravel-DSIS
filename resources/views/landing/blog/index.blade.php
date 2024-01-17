@@ -186,10 +186,16 @@ Blog Dan Berita
             </div>
         @endforeach
     </div>
-    {{-- Halaman : {{ $all->currentPage() }} <br/>
-	Jumlah Data : {{ $all->total() }} <br/>
-	Data Per Halaman : {{ $all->perPage() }} <br/>
-    {{ $all->links() }} --}}
 </section>
+<div class="container">
+    <div class="pb-48">
+        Halaman : <strong>{{ $all->currentPage() }}</strong> <br/>
+	    Jumlah Data : <strong>{{ $all->total() }}</strong> <br/>
+	    Data Per Halaman : <strong>{{ $all->perPage() }}</strong> <br/>
+        <div class="mt-5 d-flex align-items-center justify-content-center">
+            {{ $all->links() }}
+        </div>
+    </div>
+</div>
 {{-- End Blog Lainnya --}}
 @endsection

@@ -48,7 +48,7 @@ class HomeController extends Controller
     public function blog(){
         $blogs = Blog::orderBy('lihat', 'Desc')->take(4)->get();
         $latests = Blog::latest()->take(4)->get();
-        $all = Blog::paginate(2);
+        $all = Blog::paginate(8);
         return view('landing.blog.index', compact('blogs', 'latests', 'all'));
     }
 

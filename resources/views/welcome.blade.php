@@ -29,18 +29,14 @@ SMKN 6 Balikpapan
         <div class="carousel-item" style="background: url('{{ asset('/users/no-image.jpeg') }}'); background-size: cover; height: 70vh">
         @endif
           <img src="" class="d-block h-100" alt="carousel-photo">
-          <div class="carousel-caption d-none d-md-block bg-white" style="border-radius: 24px;">
+          <div class="carousel-caption d-none d-md-block " style="border-radius: 24px;">
             @if(strlen($item->judul) > 40)
-            <h3 class="text-black font-bold">{{ Str::substr($item->judul, 0, 40)}}...</h3>
+            <h3 class="text-white font-bold">{{ Str::substr($item->judul, 0, 40)}}...</h3>
             @else
-            <h3 class="text-black font-bold">{{ $item->judul }}</h3>
+            <h3 class="text-white font-bold">{{ $item->judul }}</h3>
             @endif
 
-            @if(strlen($item->konten > 200))
-            <p class="text-black">{{ Str::limit(strip_tags($item->konten), 200) }}...</p>
-            @else
-            <p class="text-black">{{ strip_tags($item->konten) }}</p>
-            @endif
+            <p class="text-white">{{ Str::limit(strip_tags($item->konten), 200) }}</p>
 
             <form action="{{ route('update-lihat', $item->id) }}" method="POST">
                 @csrf
