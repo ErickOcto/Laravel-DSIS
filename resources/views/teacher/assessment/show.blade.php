@@ -11,7 +11,10 @@ Guru - Penilaian
                 <h5 class="card-title">
                     Kelas {{ $class->classroom_name }} > Mapel {{ $class->subject_name }}
                 </h5>
-                <a href="{{ route('teacher.create.assessment', $class->id) }}" class="btn btn-primary">Buat Penilaian</a>
+                <div class="wrap">
+                    <a href="{{ route('teacher.assessment.index', $class->id) }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ route('teacher.create.assessment', $class->id) }}" class="btn btn-primary">Buat Penilaian</a>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover" id="table1">
@@ -35,7 +38,7 @@ Guru - Penilaian
                             <td>{{ \Carbon\Carbon::parse($user->date)->format('d F Y') }}</td>
                             <td>
                                 <a href="{{ route('teacher.assessment.edit', $class->id) }}" class="btn btn-warning">Edit Penilaian</a>
-                                <a onclick="confirmDelete({{ $class->id }})" class="btn btn-danger">Hapus</a>
+                                <a onclick="confirmDelete({{ $user->id }})" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
