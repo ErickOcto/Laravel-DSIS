@@ -5,5 +5,11 @@ Guru - Dashboard
 @endsection
 
 @section('teacher-content')
-Tes
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body d-flex justify-content-center align-items-center" style="height: 200px">
+                <h1>Selamat Datang Di Dashboard Guru</h1>
+            </div>
+        </div>
+    </div>
 @endsection

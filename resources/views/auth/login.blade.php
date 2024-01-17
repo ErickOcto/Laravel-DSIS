@@ -55,7 +55,7 @@
                   <label for="formInputPassword" class="form-label title-5">Password</label>
                   <input type="password" class="form-control" id="formInputPassword" name="password" placeholder="Input password">
                     @error('password')
-                        <strong class="text-danger">Ada Yang Salah Dengan Email Anda</strong>
+                        <strong class="text-danger">Ada Yang Salah Dengan Password Anda</strong>
                     @enderror
                 </div>
                 <div class="subtitle-2 mb-24" style="color: #000;

@@ -186,10 +186,10 @@ Blog Dan Berita
             </div>
         @endforeach
     </div>
-    Halaman : {{ $all->currentPage() }} <br/>
+    {{-- Halaman : {{ $all->currentPage() }} <br/>
 	Jumlah Data : {{ $all->total() }} <br/>
 	Data Per Halaman : {{ $all->perPage() }} <br/>
-    {{ $all->links() }}
+    {{ $all->links() }} --}}
 </section>
 {{-- End Blog Lainnya --}}
 @endsection

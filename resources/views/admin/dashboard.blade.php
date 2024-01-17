@@ -9,6 +9,13 @@ Admin Dashboard
 @endsection
 
 @section('admin-content')
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body d-flex justify-content-center align-items-center" style="height: 200px">
+                <h1>Selamat Datang Di Dashboard Admin</h1>
+            </div>
+        </div>
+    </div>
     <div class="col-12 col-lg-3">
         <div class="card">
             <div class="card-header">
