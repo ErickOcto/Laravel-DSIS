@@ -25,8 +25,6 @@ class AssessmentController extends Controller
                 ->select('classrooms.id as classroom_id', 'classrooms.name as classroom_name', 'subjects.name as subject_name', 'teachers_subjects.id as id')
                 ->get();
 
-        //$classrooms = User::where('classroom_id', $class->classroom_id)->count();
-
         return view('teacher.assessment.index', compact('class'));
     }
 
@@ -60,10 +58,10 @@ class AssessmentController extends Controller
             return redirect()->back()->with(['error' => "Gagal menilai siswa"]);
         }
 
-        $assessment = Assessment::where('user_id', '=', $request->user_id)->first();
+        $assessment = Assessment::where('user_id', '=', $request->user_id)->where('teacher_subject_id', $request->teacher_subject_id)->first();
 
         //dd($assessment->user_id);
-        if(!empty($assessment->user_id)){
+        if(!empty($assessment->user_id) && !empty($assessment->teacher_subject_id)){
             return redirect()->back()->with(['error' => "Gagal menilai siswa"]);
         }
 
@@ -85,11 +83,12 @@ class AssessmentController extends Controller
                 ->first();
 
         $users = User::where('classroom_id', $class->classroom_id)->where('is_admin', 2)
-        ->join('assessments', 'assessments.user_id', '=', 'users.id')
-        ->select('users.*', 'assessments.value as value', 'assessments.assessment_date as date' )
-        ->get();
+                ->join('assessments', 'assessments.user_id', '=', 'users.id')
+                ->where('assessments.teacher_subject_id', $id)
+                ->select('users.*', 'assessments.value as value', 'assessments.assessment_date as date' )
+                ->get();
 
-        //dd($users);
+
         return view('teacher.assessment.show', compact('users', 'class'));
     }
 
@@ -140,7 +139,7 @@ class AssessmentController extends Controller
      */
     public function delete(string $id)
     {
-        Assessment::where('teacher_subject_id', $id)->delete();
+        Assessment::where('user_id', $id)->where('teacher_subject_id', $id)->delete();
        return redirect()->back()->with(['success' => "Berhasil menghapus penilaian"]);
     }
 }
