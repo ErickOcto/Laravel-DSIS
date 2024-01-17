@@ -48,24 +48,15 @@ class HomeController extends Controller
     public function blog(){
         $blogs = Blog::orderBy('lihat', 'Desc')->take(4)->get();
         $latests = Blog::latest()->take(4)->get();
-        return view('landing.blog.index', compact('blogs', 'latests'));
+        $all = Blog::paginate(2);
+        return view('landing.blog.index', compact('blogs', 'latests', 'all'));
     }
 
     public function majors(Major $major){
         return view('landing.major.detail', compact('major'));
     }
 
-    //For Teacher
-
     public function teachers(){
-        // $teachers = Classroom::leftJoin('majors', 'classrooms.major_id', '=', 'majors.id')
-        //          ->leftJoin('users', 'classrooms.id', '=', 'users.classroom_id')
-        //          ->where('users.is_admin', 1)
-        //          ->select('users.name as name', 'majors.name as major_name',
-        //          'classrooms.name as classroom_name', 'users.created_at as created_at',
-        //          'users.image as photo', 'users.id as id', 'users.email as email')
-        //          ->get();
-
         $teachers = User::where('is_admin', 1)->get();
         return view('landing.teachers.index', compact('teachers'));
     }
