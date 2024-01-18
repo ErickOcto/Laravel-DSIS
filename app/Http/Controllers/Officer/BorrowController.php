@@ -39,10 +39,34 @@ class BorrowController extends Controller
             return redirect()->back()->with(['error' => 'Ups! Sepertinya ada yang salah']);
         }
 
+        $checkUser = Borrow::where('user_id', '=', $request->user_id)->where('book_id', '=', $request->book_id)->where('return_date', '=', null)->first();
+
+        //dd($checkUser);
+        if($checkUser !== null){
+            return redirect()->back()->with(['error' => "Siswa belum mengembalikan buku yang sama"]);
+        }
+
+        $check = Book::where('id', '=', $request->book_id)->where('stock', '=', '0')->first();
+        if($check){
+            return redirect()->back()->with(['error' => "Stock Buku Ini Tidak Tersedia"]);
+        }
+
+        $book = Book::where('id', '=', $request->book_id)->first();
+
+        $book->update([
+            'view' => $book->view + 1
+        ]);
+
         Borrow::create([
             'user_id' => $request->user_id,
             'book_id' => $request->book_id,
             'borrow_date' => Carbon::now(),
+        ]);
+
+        $book = Book::where('id', '=', $request->book_id)->first();
+
+        $book->update([
+            'stock' => $book->stock - 1
         ]);
 
         return redirect()->route('officer.borrow.index')->with(['success' => "Berhasil memproses peminjaman"]);
@@ -53,6 +77,12 @@ class BorrowController extends Controller
 
         $borrow->update([
             'return_date' => Carbon::now(),
+        ]);
+
+        $book = Book::where('id', '=', $borrow->book_id)->first();
+
+        $book->update([
+            'stock' => $book->stock + 1
         ]);
 
         return redirect()->route('officer.borrow.index')->with([ 'success' => "Berhasil mengubah data"]);
