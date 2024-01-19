@@ -42,7 +42,7 @@
                 class="sidebar-item {{ request()->is('officer/book-categories*') ? 'active' : '' }}">
                 <a href="{{ route('officer.book-categories.index') }}" class='sidebar-link'>
                     <i class="bi bi-tags-fill"></i>
-                    <span>Kategori</span>
+                    <span>Voting</span>
                 </a>
             </li>
 

@@ -46,6 +46,10 @@ Route::get('/profile/teachers/{id}', [HomeController::class, 'teacherDetails'])-
 Route::get('/profile/facilities/', [HomeController::class, 'facilities'])->name('facilities');
 Route::get('/profile/facilities/{id}', [HomeController::class, 'facilityDetails'])->name('facilityDetails');
 
+Route::get('/no-permission', function(){
+    return view('403');
+})->name('403');
+
 Route::get('/profile/gallery', [HomeController::class, 'gallery'])->name('gallery');
 
 Route::get('/profile/visi-misi', function () {
