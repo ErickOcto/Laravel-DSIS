@@ -48,6 +48,10 @@
                 <ul class="submenu submenu-open">
 
                     <li class="submenu-item">
+                        <a href="{{ route('officer.event.index') }}" class="submenu-link">Semua Acara</a>
+                    </li>
+
+                    <li class="submenu-item">
                         <a href="#" class="submenu-link">Voting</a>
                     </li>
 

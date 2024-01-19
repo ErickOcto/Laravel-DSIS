@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('pollings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('category', ['vote', 'porseni', 'lks']);
-            $table->string('slug');
-            $table->date('event_start');
-            $table->date('event_end');
+            $table->foreignId('event_id');
+            $table->foreignId('candidate_id');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('pollings');
     }
 };

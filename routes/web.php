@@ -17,6 +17,7 @@ use App\Http\Controllers\Officer\BorrowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Teacher\DashboardController;
 use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
+use App\Http\Controllers\Officer\EventController;
 use App\Http\Controllers\Student\BookController as StudentBookController;
 use App\Http\Controllers\Student\Dashboard;
 use App\Http\Controllers\Student\TestController;
@@ -152,6 +153,10 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
 
     //users search routes
     Route::get('borrow/users-search', [BorrowController::class, 'userSearch'])->name('borrow.userSearch');
+
+    //User Votes routes
+    Route::get('event', [EventController::class, 'index'])->name('event.index');
+    Route::get('event/create', [EventController::class, 'create'])->name('event.create');
 });
 
 Route::middleware('auth')->group(function () {
