@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Officer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\BookCategory;
 use App\Models\Borrow;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,6 +39,18 @@ class BorrowController extends Controller
         if($validators->fails()){
             return redirect()->back()->with(['error' => 'Ups! Sepertinya ada yang salah']);
         }
+
+        $bookCategory = DB::table('book_categories')
+            ->join('books', 'books.book_category_id', '=', 'book_categories.id')
+            ->where('books.id', '=', $request->book_id)
+            ->select('book_categories.*')
+            ->first();
+
+        $bookUpdate = BookCategory::find($bookCategory->id);
+
+        $bookUpdate->update([
+            'view' => $bookCategory->view + 1
+        ]);
 
         $checkUser = Borrow::where('user_id', '=', $request->user_id)->where('book_id', '=', $request->book_id)->where('return_date', '=', null)->first();
 
@@ -96,14 +109,8 @@ class BorrowController extends Controller
         ->orWhere('email', $query)->where('is_admin', '=', 2)
         ->first();
 
-        // if($users->is_admin !== 2){
-        //     return redirect()->back()->with(['error' => "User tidak ditemukan"]);
-        // }
-
         $books = Book::where('book_code', $bookQuery)
         ->first();
-
-        //dd($books);
 
         return view('officer.borrow.create', compact('users', 'query', 'books', 'bookQuery'));
     }

@@ -10,7 +10,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-title">Manajemen Buku</li>
+            <li class="sidebar-title">Manajemen Perpustakaan</li>
 
             <li
                 class="sidebar-item {{ request()->is('officer/book-categories*') ? 'active' : '' }}">
@@ -33,6 +33,16 @@
                 <a href="{{ route('officer.borrow.index') }}" class='sidebar-link'>
                     <i class="bi bi-arrow-down-up"></i>
                     <span>Peminjaman</span>
+                </a>
+            </li>
+
+            <li class="sidebar-title">Manajemen Acara</li>
+
+            <li
+                class="sidebar-item {{ request()->is('officer/book-categories*') ? 'active' : '' }}">
+                <a href="{{ route('officer.book-categories.index') }}" class='sidebar-link'>
+                    <i class="bi bi-tags-fill"></i>
+                    <span>Kategori</span>
                 </a>
             </li>
 
