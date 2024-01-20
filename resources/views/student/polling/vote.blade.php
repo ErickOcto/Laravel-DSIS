@@ -23,7 +23,7 @@ Acara {{ $event->name }}
                         <div class="fs-1">{{ $event->category }}</div>
                     </div>
                     <div class="col-4">
-                        Hitung Mundur Acara :
+                        Hitung Mundur Selesai Acara:
                         <div class="fs-1" id="countdown"></div>
                     </div>
                 </div>

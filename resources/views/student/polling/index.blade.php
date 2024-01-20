@@ -27,20 +27,20 @@ Acara Yang Berlangsung
                     <tbody>
                         @foreach ($events as $event)
                         <tr>
-                            <th>{{ $loop->iteration }}</th>
-                            <th>{{ $event->name }}</th>
-                            <th>{{ $event->category }}</th>
-                            <th>{{ $event->event_start }}</th>
-                            <th>{{ $event->event_end }}</th>
-                            @if($event->category == 'vote')
-                            
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $event->name }}</td>
+                            <td>{{ $event->category }}</td>
+                            <td>{{ $event->event_start }}</td>
+                            <td>{{ $event->event_end }}</td>
+                            @if($event->event_end == $date)
+                            <td>
+                                <button class="btn btn-danger" disabled>Acara Telah Berakhir</button>
+                            </td>
+                            @else
                             <td>
                                 <a href="{{ route('student.vote', $event->id) }}" class="btn btn-primary">Vote Sekarang</a>
                             </td>
                             @endif
-                            <th>
-
-                            </th>
                         </tr>
                         @endforeach
                     </tbody>

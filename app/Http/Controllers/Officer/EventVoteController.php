@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Event;
 use App\Models\Polling;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -65,13 +66,22 @@ class EventVoteController extends Controller
 
     public function studentIndex(){
         $events = Event::all();
-        //$check = Polling::where('user_id', Auth::user()->id);
-        return view('student.polling.index', compact('events'));
+        $date = Carbon::today()->startOfDay()->format('Y-m-d');
+        return view('student.polling.index', compact('events', 'date'));
     }
 
     public function studentVote($id){
         $event = Event::findOrFail($id);
         $candidates = Candidate::where('event_id', $id)->get();
+
+        //cek date
+        $date = Carbon::today()->startOfDay()->format('Y-m-d');
+        $checkDate = $event->event_start == $date;
+        if(!$checkDate){
+            return redirect()->back()->with(['error' => "Acara ini belum dimulai"]);
+        }
+
+        //cek history
         $check = Polling::where('user_id', '=', Auth::user()->id)->where('event_id', $id)->first();
         if($check){
             return redirect()->back()->with(['error' => "Anda  sudah melakukan voting"]);
