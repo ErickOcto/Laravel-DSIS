@@ -57,7 +57,7 @@ Petugas - Manajemen Acara
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/${kategoriId}`,
+                    url: `/officer/polling/delete/${kategoriId}`,
                     type: "DELETE",
                     data: {
                         "_token": "{{ csrf_token() }}"

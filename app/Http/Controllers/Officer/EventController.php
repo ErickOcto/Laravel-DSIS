@@ -14,7 +14,6 @@ class EventController extends Controller
     }
 
     public function create(){
-        $events = Event::all();
-        return view('officer.event.create', compact('events'));
+        return view('officer.event.create');
     }
 }

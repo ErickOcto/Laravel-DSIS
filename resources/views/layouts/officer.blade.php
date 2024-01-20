@@ -29,6 +29,9 @@
   <link rel="stylesheet" href="/assets/compiled/css/app.css">
   <link rel="stylesheet" href="/assets/compiled/css/app-dark.css">
 
+  {{-- JQUERY --}}
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
         <!-- SweetAlert CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">

@@ -18,6 +18,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Teacher\DashboardController;
 use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
 use App\Http\Controllers\Officer\EventController;
+use App\Http\Controllers\Officer\EventVoteController;
 use App\Http\Controllers\Student\BookController as StudentBookController;
 use App\Http\Controllers\Student\Dashboard;
 use App\Http\Controllers\Student\TestController;
@@ -151,12 +152,16 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     Route::put('borrow/return/{id}', [BorrowController::class, 'returnBook'])->name('borrow.return');
     Route::post('borrow/store', [BorrowController::class, 'post'])->name('borrow.store');
 
-    //users search routes
+    //officer search routes
     Route::get('borrow/users-search', [BorrowController::class, 'userSearch'])->name('borrow.userSearch');
 
-    //User Votes routes
+    //officer management event routes
     Route::get('event', [EventController::class, 'index'])->name('event.index');
     Route::get('event/create', [EventController::class, 'create'])->name('event.create');
+
+    //officer management polling routes
+    Route::resource('polling', EventVoteController::class);
+    Route::delete('polling/delete/{id}', [EventVoteController::class, 'delete'])->name('polling.delete');
 });
 
 Route::middleware('auth')->group(function () {
