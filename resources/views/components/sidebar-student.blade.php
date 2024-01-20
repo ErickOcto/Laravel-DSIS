@@ -26,6 +26,14 @@
                 </a>
             </li>
 
+            <li
+                class="sidebar-item {{ request()->is('student/polling*') ? 'active' : '' }}">
+                <a href="{{ route('student.polling.index') }}" class='sidebar-link'>
+                    <i class="bi bi-calendar-event-fill"></i>
+                    <span>Acara</span>
+                </a>
+            </li>
+
             <li class="sidebar-title">Akun</li>
 
             <li

@@ -45,18 +45,22 @@
                     <span>Acara</span>
                 </a>
 
-                <ul class="submenu submenu-open">
+                <ul class="submenu {{ request()->is('officer/event*') ? 'submenu-open' : '' }}">
 
-                    <li class="submenu-item">
+                    <li class="submenu-item {{ request()->is('officer/event') ? 'active' : '' }}">
                         <a href="{{ route('officer.event.index') }}" class="submenu-link">Semua Acara</a>
                     </li>
 
-                    <li class="submenu-item">
-                        <a href="#" class="submenu-link">Voting</a>
+                    <li class="submenu-item {{ request()->is('officer/event/vote') ? 'active' : '' }}">
+                        <a href="{{ route('officer.event.vote') }}" class="submenu-link">Voting</a>
                     </li>
 
-                    <li class="submenu-item  ">
-                        <a href="#" class="submenu-link">Porseni</a>
+                    <li class="submenu-item {{ request()->is('officer/event/porseni') ? 'active' : '' }}">
+                        <a href="{{ route('officer.event.porseni') }}" class="submenu-link">Porseni</a>
+                    </li>
+
+                    <li class="submenu-item {{ request()->is('officer/event/lks') ? 'active' : '' }}">
+                        <a href="{{ route('officer.event.lks') }}" class="submenu-link">Lomba Kompetensi Siswa</a>
                     </li>
 
                 </ul>

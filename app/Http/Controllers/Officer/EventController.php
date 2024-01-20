@@ -16,4 +16,19 @@ class EventController extends Controller
     public function create(){
         return view('officer.event.create');
     }
+
+    public function vote(){
+        $events = Event::where('category', '=', 'vote')->get();
+        return view('officer.event.index', compact('events'));
+    }
+
+    public function porseni(){
+        $events = Event::where('category', '=', 'porseni')->get();
+        return view('officer.event.index', compact('events'));
+    }
+
+    public function lks(){
+        $events = Event::where('category', '=', 'lks')->get();
+        return view('officer.event.index', compact('events'));
+    }
 }

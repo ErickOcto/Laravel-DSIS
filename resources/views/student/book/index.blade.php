@@ -7,6 +7,7 @@ Buku yang dipinjam
 @section('student-content')
 <section class="section">
     <div class="row">
+        @if($books)
         @foreach ($books as $book)
             <div class="col-3">
                 <div class="card">
@@ -23,6 +24,15 @@ Buku yang dipinjam
                 </div>
             </div>
         @endforeach
+        @else
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px">
+                <div class="fs-1">
+                    Tidak Ada Buku
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </section>
 @endsection

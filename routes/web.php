@@ -68,6 +68,11 @@ Route::middleware(['auth', 'verified', 'makeSureRole:student'])->prefix('student
     Route::get('assessment', [TestController::class, 'index'])->name('assessment');
 
     Route::get('book', [StudentBookController::class, 'index'])->name('book');
+
+    //route for polling
+    Route::get('polling', [EventVoteController::class, 'studentIndex'])->name('polling.index');
+    Route::get('vote/{id}', [EventVoteController::class, 'studentVote'])->name('vote');
+    Route::post('vote/post/{id}', [EventVoteController::class, 'studentCreate'])->name('vote.create');
 });
 
 // Backend routes for admin
@@ -158,6 +163,9 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     //officer management event routes
     Route::get('event', [EventController::class, 'index'])->name('event.index');
     Route::get('event/create', [EventController::class, 'create'])->name('event.create');
+    Route::get('event/vote', [EventController::class, 'vote'])->name('event.vote');
+    Route::get('event/porseni', [EventController::class, 'porseni'])->name('event.porseni');
+    Route::get('event/lks', [EventController::class, 'lks'])->name('event.lks');
 
     //officer management polling routes
     Route::resource('polling', EventVoteController::class);
