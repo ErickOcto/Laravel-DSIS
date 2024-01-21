@@ -170,6 +170,8 @@ Route::prefix('officer')->name('officer.')->middleware('auth', 'makeSureRole:off
     //officer management polling routes
     Route::resource('polling', EventVoteController::class);
     Route::delete('polling/delete/{id}', [EventVoteController::class, 'delete'])->name('polling.delete');
+
+    Route::get('event/detail/{id}', [EventController::class, 'eventDetail'])->name('event.detail');
 });
 
 Route::middleware('auth')->group(function () {

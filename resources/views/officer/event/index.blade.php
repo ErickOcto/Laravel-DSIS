@@ -32,6 +32,7 @@ Petugas - Manajemen Acara
                             <td>{{ $event->name }}</td>
                             <td>{{ $event->category }}</td>
                             <td>
+                                <a href="{{ route('officer.event.detail', $event->id) }}" class="btn btn-info">Detail</a>
                                 <a onclick="confirmDelete({{ $event->id }})" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
