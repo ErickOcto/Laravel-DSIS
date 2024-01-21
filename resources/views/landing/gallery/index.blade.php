@@ -5,8 +5,8 @@ Profile - Galeri
 @endsection
 
 @section('latihan-content')
-<section class="section py-100">
-    <div class="container pt-100">
+<section class="section py-100" style="min-height: 70vh">
+    <div class="container pt-100" >
         <div class="row g-3">
             @foreach ($galleries as $key => $gallery)
                 <div class="col-3 d-grid" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen-{{ $key }}">

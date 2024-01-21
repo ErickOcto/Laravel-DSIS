@@ -5,7 +5,7 @@ Daftar Guru SMKN6
 @endsection
 
 @section('latihan-content')
-<section class="container my-100">
+<section class="container my-100" style="min-height: 50vh">
     <div class="title-2">
         Daftar Guru SMKN 6 Balikpapan
     </div>

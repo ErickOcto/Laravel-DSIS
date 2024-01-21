@@ -72,6 +72,7 @@ class HomeController extends Controller
 
     public function gallery(){
         $galleries = Gallery::where('status', 1)->get();
+        //dd($galleries);
         return view('landing.gallery.index', compact('galleries'));
     }
 
