@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Event;
 use App\Models\Polling;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -44,7 +45,22 @@ class EventController extends Controller
         foreach ($candidates as $item) {
             $voteCandidates[$item->id] = Polling::where('candidate_id', $item->id)->count();
         }
-        //dd($voteCandidates);
+
+        $user = Polling::join('users', 'users.id', '=', 'pollings.user_id')
+        ->join('majors', 'users.major_id', '=', 'majors.id')
+        ->where('event_id', $id)
+        ->select('majors.name as major_name', 'majors.id as id')
+        ->get();
+
+        //dd($user);
+
+        $classroom = [];
+
+        foreach($user as $item) {
+            $classroom[$item->id] = User::where('major_id', $item->id)->count();
+        }
+
+        //dd($classroom);
         return view('officer.event.detail', compact('event', 'totalVoter', 'candidates', 'voteCandidates'));
     }
 }

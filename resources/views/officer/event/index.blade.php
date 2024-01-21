@@ -22,6 +22,8 @@ Petugas - Manajemen Acara
                             <th>No</th>
                             <th>Nama Acara</th>
                             <th>Kategori Acara</th>
+                            <th>Mulai Acara</th>
+                            <th>Akhir Acara</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -31,6 +33,8 @@ Petugas - Manajemen Acara
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $event->name }}</td>
                             <td>{{ $event->category }}</td>
+                            <td>{{ $event->event_start }}</td>
+                            <td>{{ $event->event_end }}</td>
                             <td>
                                 <a href="{{ route('officer.event.detail', $event->id) }}" class="btn btn-info">Detail</a>
                                 <a onclick="confirmDelete({{ $event->id }})" class="btn btn-danger">Hapus</a>
