@@ -23,7 +23,6 @@ use App\Http\Controllers\Student\BookController as StudentBookController;
 use App\Http\Controllers\Student\Dashboard;
 use App\Http\Controllers\Student\TestController;
 use App\Http\Controllers\Teacher\AssessmentController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +36,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route for landing page
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/detail-blog/{blog:slug}', [HomeController::class, 'detailBlog'])->name('detail-blog');
 Route::put('/update-lihat/{id}', [HomeController::class, 'updateLihat'])->name('update-lihat');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
@@ -47,6 +46,7 @@ Route::get('/profile/teachers', [HomeController::class, 'teachers'])->name('teac
 Route::get('/profile/teachers/{id}', [HomeController::class, 'teacherDetails'])->name('teachers.detail');
 Route::get('/profile/facilities/', [HomeController::class, 'facilities'])->name('facilities');
 Route::get('/profile/facilities/{id}', [HomeController::class, 'facilityDetails'])->name('facilityDetails');
+Route::get('/help', [HomeController::class, 'help'])->name('helps');
 
 Route::get('/no-permission', function(){
     return view('403');

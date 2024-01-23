@@ -63,6 +63,7 @@
             @elseif(Auth::user()->is_admin === 3)
             <li><a class="dropdown-item" href="{{ route('officer.dashboard') }}">Dashboard Ku</a></li>
             @endif
+            <li><a class="dropdown-item {{ request()->is('help') ? 'active' : '' }}" href="{{ route('helps') }}">Bantuan</a></li>
             <button type="submit" class="dropdown-item">Logout Dari Akun</button>
           </ul>
         </li>

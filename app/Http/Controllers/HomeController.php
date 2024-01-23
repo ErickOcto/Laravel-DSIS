@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Classroom;
 use App\Models\Gallery;
+use App\Models\Help;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -74,6 +75,11 @@ class HomeController extends Controller
         $galleries = Gallery::where('status', 1)->get();
         //dd($galleries);
         return view('landing.gallery.index', compact('galleries'));
+    }
+
+    public function help(){
+        $helps = Help::all();
+        return view('landing.help.index', compact('helps'));
     }
 
 }
