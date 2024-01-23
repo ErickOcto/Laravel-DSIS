@@ -126,6 +126,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'makeSureRole:admin'
 
     //Admin Help Routes
     Route::get('help', [HelpController::class, 'index'])->name('help.index');
+    Route::post('help/store', [HelpController::class, 'post'])->name('help.post');
+    Route::get('help/edit/{id}', [HelpController::class, 'edit'])->name('help.edit');
+    Route::put('help/update/{id}', [HelpController::class, 'update'])->name('help.update');
+    Route::delete('help/delete/{id}', [HelpController::class, 'delete'])->name('help.delete');
 
 });
 
