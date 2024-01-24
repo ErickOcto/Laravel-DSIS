@@ -40,7 +40,9 @@ Manajemen Galeri
                                 {{ $item->description }}
                             </td>
                             <td>
-                                <a href="{{ route('admin.help.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $item->id }}">
+                                    Edit Data
+                                </button>
                                 <a onclick="confirmDelete({{ $item->id }})" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
@@ -50,6 +52,59 @@ Manajemen Galeri
             </div>
         </div>
 
+    {{-- Modal --}}
+        @foreach ($helps as $item)
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <form action="{{ route('admin.help.update', $item->id) }}" class="modal-content" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form edit {{ $item->name }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="judul-column" class="form-label"
+                        >Nama Bantuan</label
+                      >
+                      <input
+                        type="text"
+                        id="judul-column"
+                        class="form-control"
+                        name="name"
+                        placeholder="Masukkan Nama Bantuan"
+                        data-parsley-required="true"
+                        required
+                        value="{{ old('name', $item->name) }}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="judul-column" class="form-label"
+                        >Deskripsi Bantuan</label
+                      >
+                      <textarea
+                        type="text"
+                        id="judul-column"
+                        class="form-control"
+                        name="description"
+                        placeholder="Masukkan Isi Bantuan"
+                        data-parsley-required="true"
+                        required
+                        rows="10"
+                        cols="10"
+                      >{{ $item->description }}</textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan data</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        @endforeach
     </section>
 
     <!-- Modal -->
@@ -58,7 +113,7 @@ Manajemen Galeri
         <form action="{{ route('admin.help.post') }}" class="modal-content" method="POST">
           @csrf
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Form tambah data</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">

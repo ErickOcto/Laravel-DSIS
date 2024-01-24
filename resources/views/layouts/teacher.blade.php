@@ -111,6 +111,7 @@
           </div>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('home') }}"><i class=" me-2 bi bi-box-arrow-up-right"></i>Homepage</a></li>
+            <li><a class="dropdown-item" href="{{ route('helps') }}"><i class=" me-2 bi bi-question-circle-fill"></i>Bantuan</a></li>
             <button type="submit" class="dropdown-item"><i class=" me-2 bi bi-box-arrow-right"></i></i>Logout Dari Akun</button>
           </ul>
         </li>
