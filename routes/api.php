@@ -45,3 +45,8 @@ Route::get('/image/{filename}', function ($filename) {
         abort(404);
     }
 });
+
+Route::post('/login-react', [AuthController::class, 'loginReact']);
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logout-react', [AuthController::class, 'logoutReact']);
+});

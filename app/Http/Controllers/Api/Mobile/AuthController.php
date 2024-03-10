@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -47,5 +48,35 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token
         ], 200);
+    }
+
+    public function loginReact(Request $request){
+        $user = $this->validate($request, [
+            'email' => 'email|required',
+            'password' => 'required',
+        ]);
+
+        if(!Auth::attempt($user)){
+            return response()->json([
+                'error' => ['message' => "You entered an invalid email or password"]
+            ]);
+        }
+
+        $user = Auth::user();
+
+        $token = auth()->user()->createToken('laravel_login')->plainTextToken;
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+        ]);
+    }
+
+    public function logoutReact(Request $request){
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => "Successfully logged out"
+        ]);
     }
 }
