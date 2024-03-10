@@ -36,7 +36,7 @@ Manajemen Siswa - Buat Siswa
                             <div class="col-6">
                                 <div class="form-group">
                                   <label for="kategori-column" class="form-label"
-                                    >Kelas Siswa</label
+                                    >NRP Karyawan</label
                                   >
                                     <fieldset class="form-group">
                                         <select class="form-select" name="classroom_id" id="kategori-column" required>

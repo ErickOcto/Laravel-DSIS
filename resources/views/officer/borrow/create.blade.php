@@ -96,7 +96,7 @@ Petugas - Manajemen Peminjaman
                         <div class="row mb-4">
                             <div class="col-4 offset-lg-4">
                                 @if($books->image || $books != null)
-                                <div class="img-fluid" style="background: url('/storage/books/{{ $books->image }}'); background-size:cover; min-height:350px"></div>
+                                <img class="img-fluid" src="/storage/books/{{ $books->image }}"></img>
                                 @else
                                 <div class="img-fluid" style="background: url('/users/no-image.jpeg'); background-size:cover; min-height:350px"></div>
                                 @endif
