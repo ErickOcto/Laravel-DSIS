@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\ClassController;
 use App\Http\Controllers\Api\Mobile\AuthController;
 use App\Http\Controllers\Api\Mobile\DashboardController;
+use App\Http\Controllers\Api\OfficerController;
+use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -23,13 +27,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/teachers', App\Http\Controllers\Api\TeacherController::class);
 Route::apiResource('/students', App\Http\Controllers\Api\StudentController::class);
-Route::apiResource('/classes', App\Http\Controllers\Api\ClassController::class);
+Route::apiResource('/classrooms', App\Http\Controllers\Api\ClassController::class);
 Route::apiResource('/officers', App\Http\Controllers\Api\OfficerController::class);
 
-Route::get('/total-class', [DashboardController::class, 'classroomTotal']);
-Route::get('/total-users', [DashboardController::class, 'userTotal']);
+Route::get('/total-classroom', [DashboardController::class, 'classroomTotal']);
+
+// Student API
+Route::get('/total-student', [DashboardController::class, 'studentTotal']);
+Route::get('/student-create-option', [StudentController::class, 'getOption']);
+Route::get('/student-search', [StudentController::class, 'searchStudent']);
+Route::get('/detail-student/{id}', [StudentController::class, 'showDetail']);
+
+// Officer API
+Route::get('/total-officer', [DashboardController::class, 'officerTotal']);
+Route::get('/officer-search', [OfficerController::class, 'searchOfficer']);
+
+// Teacher API
+Route::get('/total-teacher', [DashboardController::class, 'teacherTotal']);
+Route::get('/detail-teacher/{id}', [TeacherController::class, 'showDetail']);
+Route::get('/teacher-search', [TeacherController::class, 'searchTeacher']);
+
+// Major and Classroom API
 Route::get('/total-majors', [DashboardController::class, 'majorTotal']);
 Route::get('/current-user', [DashboardController::class, 'currentUser']);
+Route::get('/class-create-option', [ClassController::class, 'getOption']);
 
 
 Route::post('/register', [AuthController::class, 'registerMobile']);

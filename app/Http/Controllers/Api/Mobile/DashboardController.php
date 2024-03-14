@@ -17,8 +17,18 @@ class DashboardController extends Controller
         return new TeacherResource(true, 'Success', $totalClass);
     }
 
-    public function userTotal(){
-        $users = User::where('is_admin', 2)->count();
+    public function studentTotal(){
+        $users = User::where('is_admin', 2)->where('classroom_id', '!=', null)->count();
+        return new TeacherResource(true, 'Success', $users);
+    }
+
+    public function teacherTotal(){
+        $users = User::where('is_admin', 1)->count();
+        return new TeacherResource(true, 'Success', $users);
+    }
+
+    public function officerTotal(){
+        $users = User::where('is_admin', 3)->count();
         return new TeacherResource(true, 'Success', $users);
     }
 

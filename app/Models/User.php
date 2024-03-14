@@ -81,10 +81,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Classroom::class, 'teachers_subjects', 'id', 'classroom_id');
     }
 
-    protected function image(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($image) => asset('/storage/users/' . $image),
-        );
-    }
+    // protected function image(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($image) => asset('/storage/users/' . $image),
+    //     );
+    // }
 }

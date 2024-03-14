@@ -34,7 +34,7 @@ Manajemen Siswa
                         @foreach ($users as $user)
                         <tr>
                             @if ($user->image)
-                                <td><img src="{{ asset($user->image) }}" class="rounded" style="width: 150px"></td>
+                                <td><img src="{{ asset('/storage/users/' . $user->image) }}" class="rounded" style="width: 150px"></td>
                                 @else
                                 <td><img src="{{ asset('/users/user_pp_default.jpeg') }}" class="rounded" style="width: 150px"></td>
                             @endif
